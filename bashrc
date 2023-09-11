@@ -121,3 +121,5 @@ PATH=/home/andrew/.local/bin:"$PATH"
 
 export EDITOR=nvim
 PS1="$SHLVL $PS1"
+
+eval "$(direnv hook bash)"
