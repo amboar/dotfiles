@@ -119,5 +119,5 @@ export PARALLEL_MAKE="-j10"
 
 PATH=/home/andrew/.local/bin:"$PATH"
 
-export EDITOR=vim
+export EDITOR=nvim
 PS1="$SHLVL $PS1"
