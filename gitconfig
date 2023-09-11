@@ -1,0 +1,13 @@
+[alias]
+	co = checkout
+	st = status
+	ci = commit --signoff
+	ca = commit --amend
+	rph = rev-parse HEAD
+	rvs = remote --verbose show
+	f = fetch
+	ssh = show --stat
+	cdiff = diff --cached
+[user]
+	email = andrew@aj.id.au
+	name = Andrew Jeffery
