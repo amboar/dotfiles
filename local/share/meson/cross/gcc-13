@@ -1,0 +1,25 @@
+[host_machine]
+system = 'linux'
+cpu_family = 'x86_64'
+cpu = 'x86_64'
+endian = 'little'
+
+[constants]
+trixie = '/home/andrew/Environments/debian/trixie'
+
+[built-in options]
+c_args = [ '--sysroot=' + trixie ]
+cpp_args = [ '--sysroot=' + trixie ]
+pkg_config_path = trixie + '/usr/lib/x86_64-linux-gnu/pkgconfig'
+
+[properties]
+ld_args = [ '--sysroot=' + trixie ]
+needs_exe_wrapper = true
+
+[binaries]
+c = [ 'ccache', trixie + '/usr/bin/x86_64-linux-gnu-gcc-13' ]
+cpp = [ 'ccache', trixie + '/usr/bin/x86_64-linux-gnu-g++-13' ]
+ld = 'ld'
+strip = 'strip'
+pkg-config = 'pkg-config'
+exe_wrapper = 'trixie-meson-exe-wrapper'
