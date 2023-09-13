@@ -9,6 +9,7 @@ install: install-nvim-packer \
 	${HOME}/.config/nvim/lua/lsp.lua \
 	${HOME}/.gitconfig \
 	${HOME}/.inputrc \
+	${HOME}/.local/bin/openbmc-format \
 	${HOME}/.local/bin/trixie-meson-exe-wrapper \
 	${HOME}/.local/share/meson/cross/gcc-13 \
 	${HOME}/.tigrc \
