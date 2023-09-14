@@ -9,6 +9,7 @@
 	ssh = show --stat
 	cdiff = diff --cached
 	br = branch
+	ffm = merge --ff-only
 [user]
 	email = andrew@aj.id.au
 	name = Andrew Jeffery
