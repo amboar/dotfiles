@@ -18,5 +18,5 @@
 	id = %h (\"%s\")
 	fixes = Fixes: %h (\"%s\")
 [user]
-	email = andrew@aj.id.au
+	email = andrew@codeconstruct.com.au
 	name = Andrew Jeffery
