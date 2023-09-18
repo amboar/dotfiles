@@ -12,6 +12,7 @@
 	cdiff = diff --cached
 	br = branch
 	ffm = merge --ff-only
+	mtv = mergetool --tool=vimdiff
 [core]
         abbrev = 12
 [pretty]
