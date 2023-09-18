@@ -13,6 +13,7 @@
 	br = branch
 	ffm = merge --ff-only
 	mtv = mergetool --tool=vimdiff
+	rbc = rebase --continue
 [core]
         abbrev = 12
 [pretty]
