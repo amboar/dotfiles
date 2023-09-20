@@ -7,6 +7,8 @@ install: install-nvim-packer \
 	${HOME}/.config/nvim/init.vim \
 	${HOME}/.config/nvim/lua/plugins.lua \
 	${HOME}/.config/nvim/lua/lsp.lua \
+	${HOME}/.config/nvim/pack/tpope/start/sleuth/doc/sleuth.txt \
+	${HOME}/.config/nvim/pack/tpope/start/sleuth/plugin/sleuth.vim \
 	${HOME}/.gitconfig \
 	${HOME}/.inputrc \
 	${HOME}/.local/bin/openbmc-format \
