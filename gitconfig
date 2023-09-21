@@ -23,3 +23,8 @@
 [user]
 	email = andrew@codeconstruct.com.au
 	name = Andrew Jeffery
+[sendemail]
+	smtpEncryption = ssl
+	smtpServer = mail.codeconstruct.com.au
+	smtpUser = andrew@codeconstruct.com.au
+	smtpServerPort = 465
