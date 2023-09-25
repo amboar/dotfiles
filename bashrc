@@ -128,3 +128,6 @@ PS1="$SHLVL $PS1"
 eval "$(direnv hook bash)"
 
 export QNET="-net nic -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostname=qemu"
+
+export CC_LD=mold
+export CXX_LD=mold
