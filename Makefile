@@ -2,7 +2,11 @@
 all:
 	@echo Run \`make install\` to deploy dotfile symlinks
 
-install: install-nvim-packer \
+.PHONY: install
+install: install-dotfiles install-envrcs
+
+.PHONY: install-dotfiles
+install-dotfiles: install-nvim-packer \
 	${HOME}/.bashrc \
 	${HOME}/.config/nvim/init.vim \
 	${HOME}/.config/nvim/lua/plugins.lua \
@@ -22,6 +26,16 @@ ${HOME}/.%: %
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
 
+.PHONY: install-nvim-packer
 install-nvim-packer: ${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim
 	@[ -d $< ] || \
 		git clone --depth 1 https://github.com/wbthomason/packer.nvim ${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+.PHONY: install-envrcs
+install-envrcs: \
+	${HOME}/src/kernel.org/linux/build.aspeed_g5/.envrc \
+
+
+${HOME}/%/.envrc: %/envrc
+	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
+	ln -s $(realpath $<) $@
