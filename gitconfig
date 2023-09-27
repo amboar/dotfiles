@@ -5,7 +5,7 @@
 	ca = commit --amend
 	rph = rev-parse HEAD
 	rvs = remote --verbose show
-	f = fetch
+	f = fetch --no-tags
 	fixes = log -1 --pretty=fixes
 	id = log -1 --pretty=id
 	ssh = show --stat
