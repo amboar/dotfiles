@@ -131,3 +131,14 @@ export QNET="-net nic -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2
 
 export CC_LD=mold
 export CXX_LD=mold
+
+gen_opkg_conf ()
+{
+    local ipk_url="$1";
+    local build_dir="$2";
+    cat "${build_dir}"/tmp/deploy/ipk/**/Packages |
+        grep --color=auto '^Architecture' |
+        sort -u |
+        awk "BEGIN { arch_prio=1 } { printf(\"arch %s %d\n\", \$2, arch_prio); arch_prio += 5; printf(\"src/gz %s %s/%s\n\", \$2, \"${ipk_url}\", \$2) }" |
+        sort
+}
