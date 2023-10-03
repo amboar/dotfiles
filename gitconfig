@@ -28,3 +28,5 @@
 	smtpServer = mail.codeconstruct.com.au
 	smtpUser = andrew@codeconstruct.com.au
 	smtpServerPort = 465
+[init]
+	defaultBranch = main
