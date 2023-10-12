@@ -142,3 +142,8 @@ gen_opkg_conf ()
         awk "BEGIN { arch_prio=1 } { printf(\"arch %s %d\n\", \$2, arch_prio); arch_prio += 5; printf(\"src/gz %s %s/%s\n\", \$2, \"${ipk_url}\", \$2) }" |
         sort
 }
+
+efold()
+{
+    fold --spaces --width=72 -
+}
