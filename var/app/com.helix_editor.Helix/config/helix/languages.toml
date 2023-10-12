@@ -1,3 +1,0 @@
-[[language]]
-name = "c"
-language-server = { command = "flatpak-spawn", args = ["--host", "clangd"] }

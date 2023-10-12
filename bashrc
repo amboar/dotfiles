@@ -147,5 +147,3 @@ efold()
 {
     fold --spaces --width=72 -
 }
-
-alias hx="flatpak run com.helix_editor.Helix"

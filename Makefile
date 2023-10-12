@@ -6,7 +6,7 @@ all:
 install: install-dotfiles install-envrcs
 
 .PHONY: install-dotfiles
-install-dotfiles: install-nvim-packer install-helix-vim \
+install-dotfiles: install-nvim-packer \
 	${HOME}/.bashrc \
 	${HOME}/.config/nvim/init.vim \
 	${HOME}/.config/nvim/lua/plugins.lua \
@@ -20,7 +20,6 @@ install-dotfiles: install-nvim-packer install-helix-vim \
 	${HOME}/.local/share/meson/cross/gcc-13 \
 	${HOME}/.tigrc \
 	${HOME}/.tmux.conf \
-	${HOME}/.var/app/com.helix_editor.Helix/config/helix/languages.toml \
 
 
 ${HOME}/.%: %
@@ -31,11 +30,6 @@ ${HOME}/.%: %
 install-nvim-packer: ${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim
 	@[ -d $< ] || \
 		git clone --depth 1 https://github.com/wbthomason/packer.nvim ${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-.PHONY: install-helix-vim
-install-helix-vim: ${HOME}/.var/app/com.helix_editor.Helix/config/helix
-	@[ -f $< ] || \
-		wget --directory-prefix=$< https://raw.githubusercontent.com/LGUG2Z/helix-vim/75b99c3086cb6943fb4074042881378bbf31898a/config.toml
 
 .PHONY: install-envrcs
 install-envrcs: \
