@@ -17,7 +17,9 @@ install-dotfiles: install-nvim-packer \
 	${HOME}/.inputrc \
 	${HOME}/.local/bin/openbmc-format \
 	${HOME}/.local/bin/trixie-meson-exe-wrapper \
+	${HOME}/.local/share/meson/cross/aarch64 \
 	${HOME}/.local/share/meson/cross/gcc-13 \
+	${HOME}/.local/share/meson/cross/gcc-13-aarch64 \
 	${HOME}/.tigrc \
 	${HOME}/.tmux.conf \
 

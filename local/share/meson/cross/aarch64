@@ -1,0 +1,12 @@
+[host_machine]
+system = 'linux'
+cpu_family = 'aarch64'
+cpu = 'cortex-a56'
+endian = 'little'
+
+[binaries]
+c = '/usr/bin/aarch64-linux-gnu-gcc'
+cpp = '/usr/bin/aarch64-linux-gnu-g++'
+ld = '/usr/bin/ld'
+strip = '/usr/bin/strip'
+pkg-config = 'pkg-config'

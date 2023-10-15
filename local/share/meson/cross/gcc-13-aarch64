@@ -1,0 +1,23 @@
+[host_machine]
+system = 'linux'
+cpu_family = 'aarch64'
+cpu = 'cortex-a56'
+endian = 'little'
+
+[constants]
+trixie = '/home/andrew/Environments/debian/trixie'
+
+[built-in options]
+c_args = [ '--sysroot=' + trixie ]
+cpp_args = [ '--sysroot=' + trixie ]
+pkg_config_path = trixie + '/usr/lib/aarch64-linux-gnu/pkgconfig'
+
+[properties]
+ld_args = [ '--sysroot=' + trixie ]
+
+[binaries]
+c = [ trixie + '/usr/bin/aarch64-linux-gnu-gcc-13' ]
+cpp = [ trixie + '/usr/bin/aarch64-linux-gnu-g++-13' ]
+ld = [ trixie + '/usr/bin/aarch64-linux-gnu-ld' ]
+strip = [ trixie + '/usr/bin/aarch64-linux-gnu-strip' ]
+pkg-config = 'pkg-config'
