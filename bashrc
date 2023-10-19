@@ -147,3 +147,10 @@ efold()
 {
     fold --spaces --width=72 -
 }
+
+ct()
+{
+    local d=$(pwd)
+    local target="$1"
+    cd ${d%/${target}/*}/${target}
+}
