@@ -154,3 +154,5 @@ ct()
     local target="$1"
     cd ${d%/${target}/*}/${target}
 }
+
+. "$HOME/.cargo/env"
