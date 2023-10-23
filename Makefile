@@ -15,6 +15,10 @@ install-dotfiles: install-nvim-packer install-helix-vim \
 	${HOME}/.config/nvim/pack/tpope/start/sleuth/plugin/sleuth.vim \
 	${HOME}/.gitconfig \
 	${HOME}/.inputrc \
+	${HOME}/.local/bin/clang-format-16 \
+	${HOME}/.local/bin/clang-format-17 \
+	${HOME}/.local/bin/clang-tidy-16 \
+	${HOME}/.local/bin/clang-tidy-17 \
 	${HOME}/.local/bin/openbmc-format \
 	${HOME}/.local/bin/trixie-meson-exe-wrapper \
 	${HOME}/.local/share/meson/cross/aarch64 \

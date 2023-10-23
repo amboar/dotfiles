@@ -1,6 +1,3 @@
 #!/bin/bash
 
-CLANG_FORMAT=/home/andrew/Environments/debian/trixie/usr/bin/clang-format-16
-LD_LIBRARY_PATH=/home/andrew/Environments/debian/trixie/usr/lib/x86_64-linux-gnu
-export LD_LIBRARY_PATH
-$CLANG_FORMAT -i --style=file $(comm -23 <(git ls-files | grep -E '\.[chi](pp)?$' | sort) <(sort .clang-ignore 2> /dev/null || true))
+exec clang-format -i --style=file $(comm -23 <(git ls-files | grep -E '\.[chi](pp)?$' | sort) <(sort .clang-ignore 2> /dev/null || true))
