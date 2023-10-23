@@ -56,7 +56,12 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-source /usr/share/bash-completion/completions/git
+if [ -f /usr/share/bash-completion/completions/git ]
+then
+    source /usr/share/bash-completion/completions/git
+else
+    alias __git_ps1=true
+fi
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s) ")\$ '
@@ -112,6 +117,11 @@ if ! shopt -oq posix; then
   elif [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
   fi
+fi
+
+if [ -n "$SCHROOT_SESSION_ID" ]
+then
+    return
 fi
 
 export BB_NUMBER_THREADS=10
