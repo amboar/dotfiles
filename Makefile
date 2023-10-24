@@ -22,6 +22,7 @@ install-dotfiles: \
 	${HOME}/.local/share/meson/cross/gcc-13-aarch64 \
 	${HOME}/.tigrc \
 	${HOME}/.tmux.conf \
+	${HOME}/.vimrc \
 
 
 ${HOME}/.%: %
