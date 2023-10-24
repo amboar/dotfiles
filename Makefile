@@ -6,14 +6,9 @@ all:
 install: install-dotfiles install-envrcs
 
 .PHONY: install-dotfiles
-install-dotfiles: install-nvim-packer install-helix-vim \
+install-dotfiles: \
 	${HOME}/.bashrc \
 	${HOME}/.config/helix/config.toml \
-	${HOME}/.config/nvim/init.vim \
-	${HOME}/.config/nvim/lua/plugins.lua \
-	${HOME}/.config/nvim/lua/lsp.lua \
-	${HOME}/.config/nvim/pack/tpope/start/sleuth/doc/sleuth.txt \
-	${HOME}/.config/nvim/pack/tpope/start/sleuth/plugin/sleuth.vim \
 	${HOME}/.gitconfig \
 	${HOME}/.inputrc \
 	${HOME}/.local/bin/clang-format-16 \
@@ -32,11 +27,6 @@ install-dotfiles: install-nvim-packer install-helix-vim \
 ${HOME}/.%: %
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
-
-.PHONY: install-nvim-packer
-install-nvim-packer: ${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim
-	@[ -d $< ] || \
-		git clone --depth 1 https://github.com/wbthomason/packer.nvim ${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim
 
 .PHONY: install-envrcs
 install-envrcs: \

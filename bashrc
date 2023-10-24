@@ -132,7 +132,7 @@ export BB_ENV_PASSTHROUGH_ADDITIONS="DL_DIR SSTATE_DIR"
 
 PATH=/home/andrew/.local/bin:"$PATH"
 
-export EDITOR=nvim
+export EDITOR=hx
 PS1="$SHLVL $PS1"
 
 eval "$(direnv hook bash)"
