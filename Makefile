@@ -8,6 +8,7 @@ install: install-dotfiles install-envrcs
 .PHONY: install-dotfiles
 install-dotfiles: install-nvim-packer install-helix-vim \
 	${HOME}/.bashrc \
+	${HOME}/.config/helix/config.toml \
 	${HOME}/.config/nvim/init.vim \
 	${HOME}/.config/nvim/lua/plugins.lua \
 	${HOME}/.config/nvim/lua/lsp.lua \
@@ -36,16 +37,6 @@ ${HOME}/.%: %
 install-nvim-packer: ${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim
 	@[ -d $< ] || \
 		git clone --depth 1 https://github.com/wbthomason/packer.nvim ${HOME}/.local/share/nvim/site/pack/packer/start/packer.nvim
-
-.PHONY: install-helix-vim
-install-helix-vim: ${HOME}/.config/helix
-	@[ -f $</config.toml ] || \
-		wget --directory-prefix=$< https://raw.githubusercontent.com/LGUG2Z/helix-vim/75b99c3086cb6943fb4074042881378bbf31898a/config.toml
-	@/usr/bin/sed -Ei 's/^C-o/# \0/' $</config.toml
-	@/usr/bin/sed -Ei 's/^C-r/# \0/' $</config.toml
-	@/usr/bin/echo -ne '\n' >> $</config.toml
-	@/usr/bin/echo '[editor]' >> $</config.toml
-	@/usr/bin/echo 'line-number = "relative"' >> $</config.toml
 
 .PHONY: install-envrcs
 install-envrcs: \
