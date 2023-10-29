@@ -15,6 +15,7 @@
 	mtv = mergetool --tool=vimdiff
 	rbc = rebase --continue
 	cp = cherry-pick
+	brl = branch --remote --list
 [core]
         abbrev = 12
 [pretty]
