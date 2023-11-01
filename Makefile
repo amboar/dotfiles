@@ -9,6 +9,7 @@ install: install-dotfiles install-envrcs
 install-dotfiles: \
 	${HOME}/.bashrc \
 	${HOME}/.config/helix/config.toml \
+	${HOME}/.config/gdb/gdbinit \
 	${HOME}/.gitconfig \
 	${HOME}/.inputrc \
 	${HOME}/.local/bin/clang-format-16 \

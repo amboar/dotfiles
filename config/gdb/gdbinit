@@ -1,0 +1,1 @@
+add-auto-load-safe-path /home/andrew/src/kernel.org/linux/scripts/gdb/vmlinux-gdb.py
