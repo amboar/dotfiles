@@ -31,3 +31,5 @@
 	smtpServerPort = 465
 [init]
 	defaultBranch = main
+[format]
+	coverLetter = auto
