@@ -1,0 +1,4 @@
+export ARCH=arm
+export CROSS_COMPILE="ccache arm-linux-gnueabihf-"
+export KBUILD_OUTPUT=/home/andrew/src/kernel.org/linux/build.multi_v5
+export WARN=1
