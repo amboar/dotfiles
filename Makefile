@@ -19,6 +19,7 @@ install-dotfiles: \
 	${HOME}/.local/bin/marksman \
 	${HOME}/.local/bin/openbmc-format \
 	${HOME}/.local/bin/trixie-meson-exe-wrapper \
+	${HOME}/.local/bin/zola \
 	${HOME}/.local/share/meson/cross/aarch64 \
 	${HOME}/.local/share/meson/cross/gcc-13 \
 	${HOME}/.local/share/meson/cross/gcc-13-aarch64 \
@@ -33,6 +34,11 @@ ${HOME}/.local/bin/marksman-linux-x64:
 
 ${HOME}/.local/bin/marksman: ${HOME}/.local/bin/marksman-linux-x64
 	ln -s $< $@
+
+${HOME}/.local/bin/zola: local/bin/zola
+	flatpak install flathub org.getzola.zola
+	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
+	ln -s $(realpath $<) $@
 
 ${HOME}/.%: %
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
