@@ -16,6 +16,7 @@ install-dotfiles: \
 	${HOME}/.local/bin/clang-format-17 \
 	${HOME}/.local/bin/clang-tidy-16 \
 	${HOME}/.local/bin/clang-tidy-17 \
+	${HOME}/.local/bin/marksman \
 	${HOME}/.local/bin/openbmc-format \
 	${HOME}/.local/bin/trixie-meson-exe-wrapper \
 	${HOME}/.local/share/meson/cross/aarch64 \
@@ -25,6 +26,13 @@ install-dotfiles: \
 	${HOME}/.tmux.conf \
 	${HOME}/.vimrc \
 
+${HOME}/.local/bin/marksman-linux-x64:
+	wget --quiet --directory-prefix=$(dir $@) https://github.com/artempyanykh/marksman/releases/download/2023-11-29/marksman-linux-x64
+	echo "279e8d0cb36ea2bf571231437277b13b88821fd7c7d2473b6c24f05630cc2c47bf1cba177e6446f9bb83b67fa19e0ac4a909fcce92fefdb57715cae7ee5910e1  $@" | sha512sum --check
+	chmod +x $@
+
+${HOME}/.local/bin/marksman: ${HOME}/.local/bin/marksman-linux-x64
+	ln -s $< $@
 
 ${HOME}/.%: %
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
