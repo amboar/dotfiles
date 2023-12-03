@@ -1,0 +1,4 @@
+export ARCH=arm
+export CROSS_COMPILE="ccache arm-linux-gnueabihf-"
+export KBUILD_OUTPUT=/home/andrew/src/u-boot.org/u-boot/u-boot/build.gxp
+export WARN=1
