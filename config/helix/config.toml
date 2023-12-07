@@ -1,7 +1,5 @@
 [keys.normal]
 # Muscle memory
-0 = "goto_line_start"
-"$" = "goto_line_end"
 V = ["select_mode", "extend_to_line_bounds"]
 
 # Clipboards over registers ye ye
