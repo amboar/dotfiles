@@ -12,6 +12,8 @@ install-dotfiles: \
 	${HOME}/.config/gdb/gdbinit \
 	${HOME}/.gitconfig \
 	${HOME}/.inputrc \
+	${HOME}/.local/bin/ccache/arm-linux-gnueabihf-gcc \
+	${HOME}/.local/bin/ccache/arm-linux-gnueabihf-g++ \
 	${HOME}/.local/bin/clang-format-16 \
 	${HOME}/.local/bin/clang-format-17 \
 	${HOME}/.local/bin/clang-tidy-16 \
@@ -26,6 +28,12 @@ install-dotfiles: \
 	${HOME}/.tigrc \
 	${HOME}/.tmux.conf \
 	${HOME}/.vimrc \
+
+CCACHE = $(shell command -v ccache)
+
+${HOME}/.local/bin/ccache/%: $(CCACHE)
+	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
+	[ -z "$<" ] || ln -sf $< $@
 
 ${HOME}/.local/bin/marksman-linux-x64:
 	wget --quiet --directory-prefix=$(dir $@) https://github.com/artempyanykh/marksman/releases/download/2023-11-29/marksman-linux-x64
