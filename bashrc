@@ -136,7 +136,7 @@ export EDITOR=hx
 # Need the ability to reflow hard-wrapped text
 export GIT_EDITOR=vi
 
-PS1="$SHLVL $PS1"
+PS1="\j $PS1"
 
 eval "$(direnv hook bash)"
 
