@@ -16,6 +16,7 @@
 	rbc = rebase --continue
 	cp = cherry-pick
 	brl = branch --remote --list
+	ft = fetch
 [core]
         abbrev = 12
 [pretty]
