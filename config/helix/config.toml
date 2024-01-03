@@ -1,7 +1,4 @@
 [keys.normal]
-# Muscle memory
-V = ["select_mode", "extend_to_line_bounds"]
-
 # Clipboards over registers ye ye
 x = ["yank_main_selection_to_clipboard", "delete_selection"]
 
