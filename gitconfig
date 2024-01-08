@@ -34,3 +34,5 @@
 	defaultBranch = main
 [format]
 	coverLetter = auto
+[rerere]
+	enabled = true
