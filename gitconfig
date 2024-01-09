@@ -17,6 +17,7 @@
 	cp = cherry-pick
 	brl = branch --remote --list
 	ft = fetch
+	mthx = mergetool --tool=hx
 [core]
         abbrev = 12
 [pretty]
@@ -36,3 +37,6 @@
 	coverLetter = auto
 [rerere]
 	enabled = true
+[mergetool "hx"]
+	cmd = hx $MERGED
+	trustExitCode = true
