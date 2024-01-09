@@ -49,10 +49,6 @@ g = { g = ["select_mode", "extend_to_line_bounds", "goto_file_start", "extend_to
 esc = ["collapse_selection", "normal_mode"]
 
 [keys.select]
-# Clipboards over registers ye ye
-d = ["yank_main_selection_to_clipboard", "delete_selection"]
-x = ["yank_main_selection_to_clipboard", "delete_selection"]
-
 # Escape the madness! No more fighting with the cursor! Or with multiple cursors!
 esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
 
