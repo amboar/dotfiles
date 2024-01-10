@@ -171,3 +171,4 @@ ct()
 . "$HOME/.cargo/env"
 
 alias lsd="ls -1d"
+alias muon=muon-meson
