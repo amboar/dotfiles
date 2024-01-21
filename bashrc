@@ -133,8 +133,6 @@ export BB_ENV_PASSTHROUGH_ADDITIONS="DL_DIR SSTATE_DIR"
 PATH=/home/andrew/.local/bin:"$PATH"
 
 export EDITOR=hx
-# Need the ability to reflow hard-wrapped text
-export GIT_EDITOR=vi
 
 PS1="\j $PS1"
 
