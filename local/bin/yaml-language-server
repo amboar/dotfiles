@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec docker run -i quay.io/redhat-developer/yaml-language-server:1.14.0

@@ -21,6 +21,7 @@ install-dotfiles: \
 	${HOME}/.local/bin/marksman \
 	${HOME}/.local/bin/openbmc-format \
 	${HOME}/.local/bin/trixie-meson-exe-wrapper \
+	${HOME}/.local/bin/yaml-language-server \
 	${HOME}/.local/bin/zola \
 	${HOME}/.local/share/meson/cross/aarch64 \
 	${HOME}/.local/share/meson/cross/gcc-13 \
@@ -42,6 +43,11 @@ ${HOME}/.local/bin/marksman-linux-x64:
 
 ${HOME}/.local/bin/marksman: ${HOME}/.local/bin/marksman-linux-x64
 	ln -s $< $@
+
+${HOME}/.local/bin/yaml-language-server: local/bin/yaml-language-server
+	docker pull quay.io/redhat-developer/yaml-language-server:1.14.0
+	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
+	ln -s $(realpath $<) $@
 
 ${HOME}/.local/bin/zola: local/bin/zola
 	flatpak install flathub org.getzola.zola
