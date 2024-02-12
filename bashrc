@@ -170,3 +170,34 @@ ct()
 
 alias lsd="ls -1d"
 alias muon=muon-meson
+
+# Clone an OpenBMC project from Gerrit and set up for worktrees based on
+# 'environments'. When dealing with forked code we often have trees that are
+# out-of-date with respect to upstream. They have different requirements on
+# dependencies, and so different build configurations. The difference between
+# the environments is what causes pain on switching branches, so use a worktree
+# per environment.
+#
+# The default environment is 'origin'
+#
+# The idea is that we have the following (example) directory structure:
+#
+# ~/src/openbmc.org/openbmc/openbmc.git
+# ~/src/openbmc.org/openbmc/openbmc/<environment>
+#
+# Where ~/src/openbmc.org/openbmc/openbmc/<environment> is a worktree associated
+# with ~/src/openbmc.org/openbmc/openbmc.git
+openbmc-gerrit-clone()
+{
+    local repo="$1"
+    local environment="$([ $# -ge 2 ] && echo "$2" || echo origin)"
+    local url="ssh://amboar@gerrit.openbmc.org:29418/${repo}"
+    local project="$(basename ${repo})"
+    local clone="${project}.git"
+    local tree="${project}/${environment}"
+    git clone --separate-git-dir="${clone}" "${url}" "${tree}" &&
+        (cd "${tree}" &&
+            mkdir -p `git rev-parse --git-dir`/hooks/ &&
+            curl -Lo `git rev-parse --git-dir`/hooks/commit-msg https://gerrit.openbmc.org/tools/hooks/commit-msg &&
+            chmod +x `git rev-parse --git-dir`/hooks/commit-msg)
+}
