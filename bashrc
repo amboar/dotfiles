@@ -201,3 +201,14 @@ openbmc-gerrit-clone()
             curl -Lo `git rev-parse --git-dir`/hooks/commit-msg https://gerrit.openbmc.org/tools/hooks/commit-msg &&
             chmod +x `git rev-parse --git-dir`/hooks/commit-msg)
 }
+
+arj-clone()
+{
+
+    local url="$1"
+    local project="$(basename "$url" .git)"
+    local environment="$([ $# -ge 2 ] && echo "$2" || echo origin)"
+    local clone="${project}.git"
+    local tree="${project}/${environment}"
+    git clone --separate-git-dir="${clone}" "${url}" "${tree}"
+}
