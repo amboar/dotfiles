@@ -1,5 +1,5 @@
 export ARCH=arm
 export CROSS_COMPILE=arm-linux-gnueabihf-
-export KBUILD_OUTPUT=/home/andrew/src/kernel.org/linux/build.multi_v5
+export KBUILD_OUTPUT=/home/andrew/src/kernel.org/linux/origin/build.multi_v5
 export WARN=1
 export PATH=/home/andrew/.local/bin/ccache:$PATH

@@ -60,9 +60,9 @@ ${HOME}/.%: %
 
 .PHONY: install-envrcs
 install-envrcs: \
-	${HOME}/src/kernel.org/linux/build.aspeed_g4/.envrc \
-	${HOME}/src/kernel.org/linux/build.aspeed_g5/.envrc \
-	${HOME}/src/kernel.org/linux/build.multi_v5/.envrc \
+	${HOME}/src/kernel.org/linux/origin/build.aspeed_g4/.envrc \
+	${HOME}/src/kernel.org/linux/origin/build.aspeed_g5/.envrc \
+	${HOME}/src/kernel.org/linux/origin/build.multi_v5/.envrc \
 	${HOME}/src/u-boot.org/u-boot/u-boot/build.gxp/.envrc \
 
 
