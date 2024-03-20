@@ -40,3 +40,5 @@
 [mergetool "hx"]
 	cmd = hx $MERGED
 	trustExitCode = true
+[commit]
+	verbose = true
