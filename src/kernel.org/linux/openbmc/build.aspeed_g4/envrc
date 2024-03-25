@@ -1,0 +1,5 @@
+export ARCH=arm
+export CROSS_COMPILE=arm-linux-gnueabi-
+export KBUILD_OUTPUT=/home/andrew/src/kernel.org/linux/openbmc/build.aspeed_g4
+export WARN=1
+export PATH=/home/andrew/.local/bin/ccache:"$PATH"

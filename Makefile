@@ -60,6 +60,9 @@ ${HOME}/.%: %
 
 .PHONY: install-envrcs
 install-envrcs: \
+	${HOME}/src/kernel.org/linux/openbmc/build.aspeed_g4/.envrc \
+	${HOME}/src/kernel.org/linux/openbmc/build.aspeed_g5/.envrc \
+	${HOME}/src/kernel.org/linux/openbmc/build.multi_v5/.envrc \
 	${HOME}/src/kernel.org/linux/origin/build.aspeed_g4/.envrc \
 	${HOME}/src/kernel.org/linux/origin/build.aspeed_g5/.envrc \
 	${HOME}/src/kernel.org/linux/origin/build.multi_v5/.envrc \
