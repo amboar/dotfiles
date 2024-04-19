@@ -59,6 +59,7 @@ ${HOME}/.local/bin/yaml-language-server: local/bin/yaml-language-server
 	ln -s $(realpath $<) $@
 
 ${HOME}/.local/bin/zola: local/bin/zola
+	flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 	flatpak install flathub org.getzola.zola
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
