@@ -3,7 +3,16 @@ all:
 	@echo Run \`make install\` to deploy dotfile symlinks
 
 .PHONY: install
-install: install-dotfiles install-envrcs
+install: check-dependencies install-dotfiles install-envrcs
+
+.PHONY: check-dependencies
+check-dependencies:
+	command -v ccache
+	command -v clangd
+	command -v direnv
+	command -v docker
+	command -v flatpak
+	command -v wget
 
 .PHONY: install-dotfiles
 install-dotfiles: \
