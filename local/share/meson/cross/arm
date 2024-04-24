@@ -1,0 +1,12 @@
+[host_machine]
+system = 'linux'
+cpu_family = 'arm'
+cpu = 'cortex-a7'
+endian = 'little'
+
+[binaries]
+c = '/usr/bin/arm-linux-gnueabihf-gcc'
+cpp = '/usr/bin/arm-linux-gnueabihf-g++'
+ld = '/usr/bin/ld'
+strip = '/usr/bin/strip'
+pkg-config = 'pkg-config'

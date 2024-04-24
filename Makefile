@@ -33,6 +33,7 @@ install-dotfiles: \
 	${HOME}/.local/bin/yaml-language-server \
 	${HOME}/.local/bin/zola \
 	${HOME}/.local/share/meson/cross/aarch64 \
+	${HOME}/.local/share/meson/cross/arm \
 	${HOME}/.local/share/meson/cross/gcc-13 \
 	${HOME}/.local/share/meson/cross/gcc-13-aarch64 \
 	${HOME}/.tigrc \
