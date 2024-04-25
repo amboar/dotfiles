@@ -212,3 +212,10 @@ arj-clone()
     local tree="${project}/${environment}"
     git clone --separate-git-dir="${clone}" "${url}" "${tree}"
 }
+
+docive()
+{
+	for F in PXL*.jpg; do convert -resize 60% $F ${F%.jpg}.small.jpg; done
+	for F in PXL*.small.jpg; do convert $F ${F%.jpg}.pdf; done
+	pdftk *.pdf cat output "$1"
+}
