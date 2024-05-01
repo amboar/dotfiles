@@ -33,8 +33,6 @@
 	smtpServerPort = 465
 [init]
 	defaultBranch = main
-[format]
-	coverLetter = auto
 [rerere]
 	enabled = true
 [mergetool "hx"]
