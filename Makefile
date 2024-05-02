@@ -23,6 +23,7 @@ install-dotfiles: \
 	${HOME}/.inputrc \
 	${HOME}/.local/bin/ccache/arm-linux-gnueabihf-gcc \
 	${HOME}/.local/bin/ccache/arm-linux-gnueabihf-g++ \
+	${HOME}/.local/bin/ci \
 	${HOME}/.local/bin/clang-format-16 \
 	${HOME}/.local/bin/clang-format-17 \
 	${HOME}/.local/bin/clang-tidy-16 \

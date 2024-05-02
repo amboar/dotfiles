@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -x
+set -eu
+
+: ${CI_PROJECT_BASE:=/home/andrew/src/openbmc.org/openbmc}
+: ${CI_BUILD_SCRIPTS:=openbmc-build-scripts}
+: ${CI_SUBPROJECT_BUILD:=build}
+
+[ $# -ge 1 ]
+CI_SUBPROJECT_PATH="$1"
+CI_SUBPROJECT_SLUG="$(realpath --relative-base="$CI_PROJECT_BASE" "$CI_SUBPROJECT_PATH")"
+
+rm -rf "$CI_SUBPROJECT_PATH"/"$CI_SUBPROJECT_BUILD"
+cd "$CI_PROJECT_BASE"
+WORKSPACE="$(pwd)" UNIT_TEST_PKG="$CI_SUBPROJECT_SLUG" TEST_ONLY=1 "$CI_PROJECT_BASE"/"$CI_BUILD_SCRIPTS"/run-unit-test-docker.sh
