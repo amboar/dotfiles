@@ -18,6 +18,7 @@
 	brl = branch --remote --list
 	ft = fetch
 	mtx = mergetool --tool=hx
+	sdiff = diff --stat
 [core]
         abbrev = 12
 [pretty]
