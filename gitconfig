@@ -19,6 +19,7 @@
 	ft = fetch
 	mtx = mergetool --tool=hx
 	sdiff = diff --stat
+	pn = log -1 --format=%f
 [core]
         abbrev = 12
 [pretty]
