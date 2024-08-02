@@ -40,3 +40,5 @@
 	trustExitCode = true
 [commit]
 	verbose = true
+[http]
+	cookiefile = /home/andrew/.gitcookies
