@@ -17,6 +17,7 @@ check-dependencies:
 .PHONY: install-dotfiles
 install-dotfiles: \
 	${HOME}/.bashrc \
+	${HOME}/.config/b4/templates/bmc-tree-am.template \
 	${HOME}/.config/helix/config.toml \
 	${HOME}/.config/gdb/gdbinit \
 	${HOME}/.gitconfig \
