@@ -4,8 +4,6 @@ ${quote}
 
 Thanks, I've applied this to be picked up through the BMC tree.
 
-${summary}
-
 # if ~/.signature exists, it will be put here, otherwise
 # the contents will be "user.name <user.email>" from gitconfig
 --
