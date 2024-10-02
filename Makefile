@@ -72,17 +72,25 @@ ${HOME}/.%: %
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
 
-.PHONY: install-envrcs
-install-envrcs: \
+LINUX_ARM_ENVRCS = \
 	${HOME}/src/kernel.org/linux/openbmc/build.aspeed_g4/.envrc \
 	${HOME}/src/kernel.org/linux/openbmc/build.aspeed_g5/.envrc \
 	${HOME}/src/kernel.org/linux/openbmc/build.multi_v5/.envrc \
 	${HOME}/src/kernel.org/linux/origin/build.aspeed_g4/.envrc \
 	${HOME}/src/kernel.org/linux/origin/build.aspeed_g5/.envrc \
 	${HOME}/src/kernel.org/linux/origin/build.multi_v5/.envrc \
+
+UBOOT_ARM_ENVRCS = \
 	${HOME}/src/u-boot.org/u-boot/u-boot/build.gxp/.envrc \
+	
+.PHONY: install-envrcs
+install-envrcs: $(LINUX_ARM_ENVRCS) $(UBOOT_ARM_ENVRCS)
 
 
-${HOME}/%/.envrc: %/envrc
+$(LINUX_ARM_ENVRCS): src/kernel.org/linux/arm-envrc
+	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
+	ln -s $(realpath $<) $@
+
+$(UBOOT_ARM_ENVRCS): src/u-boot.org/u-boot/arm-envrc
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@

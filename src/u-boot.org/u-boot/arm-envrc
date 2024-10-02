@@ -1,5 +1,5 @@
 export ARCH=arm
 export CROSS_COMPILE=arm-linux-gnueabihf-
-export KBUILD_OUTPUT=/home/andrew/src/u-boot.org/u-boot/u-boot/build.gxp
+export KBUILD_OUTPUT=$(pwd)
 export WARN=1
 export PATH=/home/andrew/.local/bin/ccache:"$PATH"

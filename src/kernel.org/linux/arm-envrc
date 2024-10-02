@@ -1,5 +1,5 @@
 export ARCH=arm
 export CROSS_COMPILE=arm-linux-gnueabi-
-export KBUILD_OUTPUT=/home/andrew/src/kernel.org/linux/origin/build.aspeed_g4
+export KBUILD_OUTPUT=$(pwd)
 export WARN=1
 export PATH=/home/andrew/.local/bin/ccache:"$PATH"
