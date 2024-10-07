@@ -44,3 +44,5 @@
 	verbose = true
 [http]
 	cookiefile = /home/andrew/.gitcookies
+[advice]
+	skippedCherryPicks = false
