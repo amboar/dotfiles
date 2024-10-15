@@ -46,3 +46,5 @@
 	cookiefile = /home/andrew/.gitcookies
 [advice]
 	skippedCherryPicks = false
+[b4]
+	linkmask = https://patch.msgid.link/%s
