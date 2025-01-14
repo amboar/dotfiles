@@ -22,6 +22,7 @@ install-dotfiles: \
 	${HOME}/.config/helix/config.toml \
 	${HOME}/.config/gdb/gdbinit \
 	${HOME}/.gitconfig \
+	${HOME}/.gnupg/gpg.conf \
 	${HOME}/.inputrc \
 	${HOME}/.local/bin/ccache/arm-linux-gnueabihf-gcc \
 	${HOME}/.local/bin/ccache/arm-linux-gnueabihf-g++ \
