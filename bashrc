@@ -219,3 +219,6 @@ docive()
 	for F in PXL*.small.jpg; do convert $F ${F%.jpg}.pdf; done
 	pdftk *.pdf cat output "$1"
 }
+
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+gpgconf --launch gpg-agent

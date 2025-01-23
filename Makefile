@@ -23,6 +23,7 @@ install-dotfiles: \
 	${HOME}/.config/gdb/gdbinit \
 	${HOME}/.gitconfig \
 	${HOME}/.gnupg/gpg.conf \
+	${HOME}/.gnupg/sshcontrol \
 	${HOME}/.inputrc \
 	${HOME}/.local/bin/ccache/arm-linux-gnueabihf-gcc \
 	${HOME}/.local/bin/ccache/arm-linux-gnueabihf-g++ \
