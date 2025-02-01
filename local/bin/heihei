@@ -1,0 +1,8 @@
+#!/usr/bin/sh
+
+set -eux
+
+pipx upgrade-all
+rustup upgrade
+schroot -c trixie -u root -- sh -c 'apt update && apt upgrade -y'
+for M in $(virsh --readonly --connect qemu:///system list --name | sed -E -e '/^$/d' -e 's/$/.local/'); do ssh -tA "$M" sudo sh -c '"apt update && apt upgrade -y"'; done
