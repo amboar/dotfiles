@@ -2,7 +2,46 @@
 
 set -eux
 
+heihei_git_latest()
+{
+  git tag --list --contains HEAD |
+    grep --invert-match ^"$(git describe --tags --always HEAD)"\$
+}
+
+# langage-managed installations
 pipx upgrade-all
 rustup upgrade
+
+# chroots
 schroot -c trixie -u root -- sh -c 'apt update && apt upgrade -y'
-for M in $(virsh --readonly --connect qemu:///system list --name | sed -E -e '/^$/d' -e 's/$/.local/'); do ssh -tA "$M" sudo sh -c '"apt update && apt upgrade -y"'; done
+
+# VMs
+for M in $(virsh --readonly --connect qemu:///system list --name | head -n-1)
+do
+  ssh -tA "$M".local sudo sh -c '"apt update && apt upgrade -y"'
+done
+
+# source installations
+(
+  
+  cd ~/src/github.com/helix-editor/helix
+  git fetch --tags origin
+  helix_tag="$(heihei_git_latest || true)"
+  if [ -n "$helix_tag" ]
+  then
+    git checkout "$helix_tag"
+    cargo install --path helix-term --locked
+  fi
+)
+
+(
+  cd ~/src/github.com/google/bloaty/.git
+  git fetch --tags origin
+  bloaty_tag="$(heihei_git_latest || true)"
+  if [ -n "$bloaty_tag" ]
+  then
+    git checkout "$bloaty_tag"
+    cmake --build build
+    cmake --build build --target install
+  fi
+)
