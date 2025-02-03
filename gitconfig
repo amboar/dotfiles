@@ -49,3 +49,5 @@
 	skippedCherryPicks = false
 [b4]
 	linkmask = https://patch.msgid.link/%s
+[patatt]
+	signingkey = openpgp:3B837651FC0D8CF4
