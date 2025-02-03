@@ -20,6 +20,7 @@
 	mtx = mergetool --tool=hx
 	sdiff = diff --stat
 	pn = log -1 --format=%f
+	sw = switch
 [core]
         abbrev = 12
 [pretty]
