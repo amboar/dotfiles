@@ -3,7 +3,7 @@ all:
 	@echo Run \`make install\` to deploy dotfile symlinks
 
 .PHONY: install
-install: check-dependencies install-dotfiles install-envrcs
+install: check-dependencies install-dotfiles install-envrcs install-python
 
 .PHONY: check-dependencies
 check-dependencies:
@@ -12,6 +12,7 @@ check-dependencies:
 	command -v direnv
 	command -v docker
 	command -v flatpak
+	command -v python3
 	command -v wget
 
 .PHONY: install-dotfiles
@@ -98,3 +99,9 @@ $(LINUX_ARM_ENVRCS): src/kernel.org/linux/arm-envrc
 $(UBOOT_ARM_ENVRCS): src/u-boot.org/u-boot/arm-envrc
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
+
+.PHONY: install-python
+install-python: ${HOME}/.local/bin/python
+
+${HOME}/.local/bin/python: $(shell command -v python3)
+	ln -s $< $@
