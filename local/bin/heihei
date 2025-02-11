@@ -13,14 +13,13 @@ pipx upgrade-all
 rustup upgrade
 
 # chroots
-heihei_apt_opts="-o Apt::Cmd::Disable-Script-Warning=true"
-heihei_apt_upgrade="apt $heihei_apt_opts update && apt $heihei_apt_opts upgrade -y"
-schroot -c trixie -u root -- sh -c "$heihei_apt_upgrade"
+schroot -c trixie -u root -- sh -c "apt -o Apt::Cmd::Disable-Script-Warning=true update && apt -o Apt::Cmd::Disable-Script-Warning=true upgrade -y"
 
 # VMs
 for M in $(virsh --readonly --connect qemu:///system list --name | head -n-1)
 do
-  ssh -tA "$M".local sudo sh -c "'$heihei_apt_upgrade'"
+  ssh -tA "$M".local sudo sh -c "'apt update'"
+  ssh -tA "$M".local sudo sh -c "'apt upgrade -y'"
 done
 
 # source installations
