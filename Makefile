@@ -24,6 +24,7 @@ install-dotfiles: \
 	${HOME}/.config/gdb/gdbinit \
 	${HOME}/.config/git/config \
 	${HOME}/.config/tig/config \
+	${HOME}/.config/tmux/tmux.conf \
 	${HOME}/.gnupg/gpg.conf \
 	${HOME}/.gnupg/gpg-agent.conf \
 	${HOME}/.gnupg/sshcontrol \
@@ -45,7 +46,6 @@ install-dotfiles: \
 	${HOME}/.local/share/meson/cross/arm \
 	${HOME}/.local/share/meson/cross/gcc-13 \
 	${HOME}/.local/share/meson/cross/gcc-13-aarch64 \
-	${HOME}/.tmux.conf \
 	${HOME}/.vimrc \
 
 CCACHE = $(shell command -v ccache)
