@@ -20,3 +20,5 @@ set show-changes = no
 
 # Optionally, use the old and faster but less acurate graph renderer
 #set main-view-commit-title-graph = v1
+
+bind main X !git cherry-pick -x %(commit)
