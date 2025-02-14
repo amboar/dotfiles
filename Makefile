@@ -22,6 +22,7 @@ install-dotfiles: \
 	${HOME}/.config/evolution/accels \
 	${HOME}/.config/helix/config.toml \
 	${HOME}/.config/gdb/gdbinit \
+	${HOME}/.config/tig/config \
 	${HOME}/.gitconfig \
 	${HOME}/.gnupg/gpg.conf \
 	${HOME}/.gnupg/gpg-agent.conf \
@@ -44,7 +45,6 @@ install-dotfiles: \
 	${HOME}/.local/share/meson/cross/arm \
 	${HOME}/.local/share/meson/cross/gcc-13 \
 	${HOME}/.local/share/meson/cross/gcc-13-aarch64 \
-	${HOME}/.tigrc \
 	${HOME}/.tmux.conf \
 	${HOME}/.vimrc \
 
