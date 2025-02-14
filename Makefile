@@ -22,8 +22,8 @@ install-dotfiles: \
 	${HOME}/.config/evolution/accels \
 	${HOME}/.config/helix/config.toml \
 	${HOME}/.config/gdb/gdbinit \
+	${HOME}/.config/git/config \
 	${HOME}/.config/tig/config \
-	${HOME}/.gitconfig \
 	${HOME}/.gnupg/gpg.conf \
 	${HOME}/.gnupg/gpg-agent.conf \
 	${HOME}/.gnupg/sshcontrol \
