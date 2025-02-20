@@ -15,7 +15,10 @@ pipx upgrade-all
 rustup upgrade
 
 # chroots
-schroot -c trixie -u root -- sh -c "apt $APT_OPTS update && apt $APT_OPTS upgrade -y"
+for R in $(schroot --list)
+do
+  schroot -c "$R" -u root -- sh -c "apt $APT_OPTS update && apt $APT_OPTS upgrade -y"
+done
 
 # VMs
 for M in $(virsh --readonly --connect qemu:///system list --name | head -n-1)
