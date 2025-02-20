@@ -2,6 +2,8 @@
 
 set -eux
 
+APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
+
 heihei_git_latest()
 {
   git tag --list --contains HEAD |
@@ -13,13 +15,14 @@ pipx upgrade-all
 rustup upgrade
 
 # chroots
-schroot -c trixie -u root -- sh -c "apt -o Apt::Cmd::Disable-Script-Warning=true update && apt -o Apt::Cmd::Disable-Script-Warning=true upgrade -y"
+schroot -c trixie -u root -- sh -c "apt $APT_OPTS update && apt $APT_OPTS upgrade -y"
 
 # VMs
 for M in $(virsh --readonly --connect qemu:///system list --name | head -n-1)
 do
-  ssh -tA "$M".local sudo sh -c "'apt update'"
-  ssh -tA "$M".local sudo sh -c "'apt upgrade -y'"
+  # Work-around for flaky agent auth over socket forwarding with nitrokey (?)
+  while ! ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS update'" </dev/null; do sleep 1; done
+  while ! ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS upgrade -y'" </dev/null; do sleep 1; done
 done
 
 # source installations
