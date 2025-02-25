@@ -20,15 +20,18 @@ rustup upgrade
 # chroots
 for R in $(schroot --list)
 do
-  schroot -c "$R" -u root -- sh -c "apt $APT_OPTS update && apt $APT_OPTS upgrade -y"
+  schroot -c "$R" -u root -- sh -c "apt $APT_OPTS update"
+  schroot -c "$R" -u root -- sh -c "apt $APT_OPTS upgrade -y"
+  schroot -c "$R" -u root -- sh -c "apt $APT_OPTS autoremove -y"
 done
 
 # VMs
 for M in $(virsh --readonly --connect qemu:///system list --name | head -n-1)
 do
   # Work-around for flaky agent auth over socket forwarding with nitrokey (?)
-  while ! ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS update'" </dev/null; do sleep 1; done
-  while ! ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS upgrade -y'" </dev/null; do sleep 1; done
+  until ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS update'" </dev/null; do sleep 1; done
+  until ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS upgrade -y'" </dev/null; do sleep 1; done
+  until ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS autoremove -y'" </dev/null; do sleep 1; done
 done
 
 # source installations
