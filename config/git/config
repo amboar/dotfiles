@@ -1,3 +1,5 @@
+[advice]
+	skippedCherryPicks = false
 [alias]
 	co = checkout
 	st = status
@@ -21,33 +23,31 @@
 	sdiff = diff --stat
 	pn = log -1 --format=%f
 	sw = switch
+[b4]
+	linkmask = https://patch.msgid.link/%s
+[commit]
+	verbose = true
 [core]
-        abbrev = 12
+    abbrev = 12
+[http]
+	cookiefile = /home/andrew/.gitcookies
+[init]
+	defaultBranch = main
+[mergetool "hx"]
+	cmd = hx $MERGED
+	trustExitCode = true
+[patatt]
+	signingkey = openpgp:3B837651FC0D8CF4
 [pretty]
 	id = %h (\"%s\")
 	fixes = Fixes: %h (\"%s\")
-[user]
-	email = andrew@codeconstruct.com.au
-	name = Andrew Jeffery
+[rerere]
+	enabled = true
 [sendemail]
 	smtpEncryption = ssl
 	smtpServer = mail.codeconstruct.com.au
 	smtpUser = andrew@codeconstruct.com.au
 	smtpServerPort = 465
-[init]
-	defaultBranch = main
-[rerere]
-	enabled = true
-[mergetool "hx"]
-	cmd = hx $MERGED
-	trustExitCode = true
-[commit]
-	verbose = true
-[http]
-	cookiefile = /home/andrew/.gitcookies
-[advice]
-	skippedCherryPicks = false
-[b4]
-	linkmask = https://patch.msgid.link/%s
-[patatt]
-	signingkey = openpgp:3B837651FC0D8CF4
+[user]
+	email = andrew@codeconstruct.com.au
+	name = Andrew Jeffery
