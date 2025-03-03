@@ -25,10 +25,15 @@
 	sw = switch
 [b4]
 	linkmask = https://patch.msgid.link/%s
+[branch]
+	sort = -committerdate
 [commit]
 	verbose = true
 [core]
     abbrev = 12
+[diff]
+	algorithm = histogram
+	colorMoved = true
 [http]
 	cookiefile = /home/andrew/.gitcookies
 [init]
@@ -48,6 +53,8 @@
 	smtpServer = mail.codeconstruct.com.au
 	smtpUser = andrew@codeconstruct.com.au
 	smtpServerPort = 465
+[tag]
+	sort = version:refname
 [user]
 	email = andrew@codeconstruct.com.au
 	name = Andrew Jeffery
