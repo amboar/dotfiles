@@ -58,3 +58,16 @@ done
     cmake --build build --target install
   fi
 )
+
+(
+  cd ~/src/github.com/fish-shell/fish-shell
+  git fetch --tags origin
+  fish_tag="$(heihei_git_latest || true)"
+  if [ -n "$fish_tag" ]
+  then
+    git checkout "$fish_tag"
+    cmake -DCMAKE_INSTALL_PREFIX="${HOME}"/.local -B build
+    cmake --build build
+    cmake --install build
+  fi
+)
