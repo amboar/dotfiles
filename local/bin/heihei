@@ -48,7 +48,7 @@ done
 )
 
 (
-  cd ~/src/github.com/google/bloaty/.git
+  cd ~/src/github.com/google/bloaty
   git fetch --tags origin
   bloaty_tag="$(heihei_git_latest || true)"
   if [ -n "$bloaty_tag" ]
