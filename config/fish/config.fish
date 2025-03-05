@@ -1,4 +1,6 @@
 if status is-interactive
+    set -g fish_key_bindings fish_vi_key_bindings
+
     if test -z "$SCHROOT_SESSION_ID"
         set -p PATH $HOME/.local/bin
         set -p PATH $HOME/.cargo/bin
