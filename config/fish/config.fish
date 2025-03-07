@@ -1,11 +1,13 @@
 if status is-interactive
     set -g fish_key_bindings fish_vi_key_bindings
 
+    # Allow hx in schroots
+    set -p PATH $HOME/.cargo/bin
+    set -gx EDITOR hx
+    set -gx COLORTERM truecolor
+
     if test -z "$SCHROOT_SESSION_ID"
         set -p PATH $HOME/.local/bin
-        set -p PATH $HOME/.cargo/bin
-
-        set -gx EDITOR hx
 
         set -gx BB_NUMBER_THREADS $(math $(nproc) / 4)
         set -gx PARALLEL_MAKE -j$(math $(nproc) / 2)
