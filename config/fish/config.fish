@@ -7,6 +7,8 @@ if status is-interactive
     set -gx COLORTERM truecolor
 
     if test -z "$SCHROOT_SESSION_ID"
+        direnv hook fish | source
+
         set -p PATH $HOME/.local/bin
 
         set -gx BB_NUMBER_THREADS $(math $(nproc) / 4)
