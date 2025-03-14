@@ -2,6 +2,8 @@
 
 set -eux
 
+: ${HEIHEI_UPDATES:="bloaty fish helix packetry pipx rustup schroots vms"}
+
 APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
 
 heihei_git_latest()
@@ -11,63 +13,97 @@ heihei_git_latest()
 }
 
 # SSH authentication
-until gpg --card-status >/dev/null 2>&1 ; do read -p "Insert nitrokey: " V; done
+if echo $HEIHEI_UPDATES | grep -q vms
+then
+  until gpg --card-status >/dev/null 2>&1 ; do read -p "Insert nitrokey: " V; done
+fi
 
-# langage-managed installations
-pipx upgrade-all
-rustup upgrade
+if echo $HEIHEI_UPDATES | grep -q pipx
+then
+  pipx upgrade-all
+fi
 
-# chroots
-for R in $(schroot --list)
-do
-  schroot -c "$R" -u root -- sh -c "apt $APT_OPTS update"
-  schroot -c "$R" -u root -- sh -c "apt $APT_OPTS upgrade -y"
-  schroot -c "$R" -u root -- sh -c "apt $APT_OPTS autoremove -y"
-done
+if echo $HEIHEI_UPDATES | grep -q rustup
+then
+  rustup upgrade
+fi
 
-# VMs
-for M in $(virsh --readonly --connect qemu:///system list --name | head -n-1)
-do
-  # Work-around for flaky agent auth over socket forwarding with nitrokey (?)
-  until ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS update'" </dev/null; do sleep 1; done
-  until ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS upgrade -y'" </dev/null; do sleep 1; done
-  until ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS autoremove -y'" </dev/null; do sleep 1; done
-done
+if echo $HEIHEI_UPDATES | grep -q schroots
+then
+  for R in $(schroot --list)
+  do
+    schroot -c "$R" -u root -- sh -c "apt $APT_OPTS update"
+    schroot -c "$R" -u root -- sh -c "apt $APT_OPTS upgrade -y"
+    schroot -c "$R" -u root -- sh -c "apt $APT_OPTS autoremove -y"
+  done
+fi
 
-# source installations
-(
-  
-  cd ~/src/github.com/helix-editor/helix
-  git fetch --tags origin
-  helix_tag="$(heihei_git_latest || true)"
-  if [ -n "$helix_tag" ]
-  then
-    git checkout "$helix_tag"
-    cargo install --path helix-term --locked
-  fi
-)
+if echo $HEIHEI_UPDATES | grep -q vms
+then
+  for M in $(virsh --readonly --connect qemu:///system list --name | head -n-1)
+  do
+    # Work-around for flaky agent auth over socket forwarding with nitrokey (?)
+    until ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS update'" </dev/null; do sleep 1; done
+    until ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS upgrade -y'" </dev/null; do sleep 1; done
+    until ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS autoremove -y'" </dev/null; do sleep 1; done
+  done
+fi
 
-(
-  cd ~/src/github.com/google/bloaty
-  git fetch --tags origin
-  bloaty_tag="$(heihei_git_latest || true)"
-  if [ -n "$bloaty_tag" ]
-  then
-    git checkout "$bloaty_tag"
-    cmake --build build
-    cmake --build build --target install
-  fi
-)
+if echo $HEIHEI_UPDATES | grep -q helix
+then
+  (
+    cd ~/src/github.com/helix-editor/helix
+    git fetch --tags origin
+    helix_tag="$(heihei_git_latest || true)"
+    if [ -n "$helix_tag" ]
+    then
+      git checkout "$helix_tag"
+      cargo install --path helix-term --locked
+    fi
+  )
+fi
 
-(
-  cd ~/src/github.com/fish-shell/fish-shell
-  git fetch --tags origin
-  fish_tag="$(heihei_git_latest || true)"
-  if [ -n "$fish_tag" ]
-  then
-    git checkout "$fish_tag"
-    cmake -DCMAKE_INSTALL_PREFIX="${HOME}"/.local -B build
-    cmake --build build
-    cmake --install build
-  fi
-)
+if echo $HEIHEI_UPDATES | grep -q bloaty
+then
+  (
+    cd ~/src/github.com/google/bloaty
+    git fetch --tags origin
+    bloaty_tag="$(heihei_git_latest || true)"
+    if [ -n "$bloaty_tag" ]
+    then
+      git checkout "$bloaty_tag"
+      cmake --build build
+      cmake --build build --target install
+    fi
+  )
+fi
+
+if echo $HEIHEI_UPDATES | grep -q fish
+then
+  (
+    cd ~/src/github.com/fish-shell/fish-shell
+    git fetch --tags origin
+    fish_tag="$(heihei_git_latest || true)"
+    if [ -n "$fish_tag" ]
+    then
+      git checkout "$fish_tag"
+      cmake -DCMAKE_INSTALL_PREFIX="${HOME}"/.local -B build
+      cmake --build build
+      cmake --install build
+    fi
+  )
+fi
+
+if echo $HEIHEI_UPDATES | grep -q packetry
+then
+  (
+    cd ~/src/github.com/greatscottgadgets/packetry
+    git fetch --tags origin
+    packetry_tag="$(heihei_git_latest || true)"
+    if [ -n "$packetry_tag" ]
+    then
+      git checkout "$packetry_tag"
+      cargo install --path . --bin packetry
+    fi
+  )
+fi
