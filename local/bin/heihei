@@ -2,7 +2,7 @@
 
 set -eux
 
-: ${HEIHEI_UPDATES:="bloaty fish helix packetry pipx rustup schroots vms"}
+: ${HEIHEI_UPDATES:="bloaty fish flatpaks helix packetry pipx rustup schroots vms"}
 
 APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
 
@@ -26,6 +26,11 @@ fi
 if echo $HEIHEI_UPDATES | grep -q rustup
 then
   rustup upgrade
+fi
+
+if echo $HEIHEI_UPDATES | grep -q flatpaks
+then
+  flatpak update
 fi
 
 if echo $HEIHEI_UPDATES | grep -q schroots
