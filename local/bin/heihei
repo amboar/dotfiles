@@ -8,8 +8,13 @@ APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
 
 heihei_git_latest()
 {
-  git tag --list --contains HEAD |
-    grep --invert-match ^"$(git describe --tags --always HEAD)"\$
+  if [ $# -eq 1 ] && [ -n "$1" ]
+  then
+    echo $1
+  else
+    git tag --list --contains HEAD |
+      grep --invert-match ^"$(git describe --tags --always HEAD)"\$
+  fi
 }
 
 # SSH authentication
@@ -59,7 +64,7 @@ then
   (
     cd ~/src/github.com/helix-editor/helix
     git fetch --tags origin
-    helix_tag="$(heihei_git_latest || true)"
+    helix_tag="$(heihei_git_latest ${HEIHEI_HELIX_ID:-""} || true)"
     if [ -n "$helix_tag" ]
     then
       git checkout "$helix_tag"
@@ -73,7 +78,7 @@ then
   (
     cd ~/src/github.com/google/bloaty
     git fetch --tags origin
-    bloaty_tag="$(heihei_git_latest || true)"
+    bloaty_tag="$(heihei_git_latest ${HEIHEI_BLOATY_ID:-""} || true)"
     if [ -n "$bloaty_tag" ]
     then
       git checkout "$bloaty_tag"
@@ -88,7 +93,7 @@ then
   (
     cd ~/src/github.com/fish-shell/fish-shell
     git fetch --tags origin
-    fish_tag="$(heihei_git_latest || true)"
+    fish_tag="$(heihei_git_latest ${HEIHEI_FISH_ID:-""} || true)"
     if [ -n "$fish_tag" ]
     then
       git checkout "$fish_tag"
@@ -104,7 +109,7 @@ then
   (
     cd ~/src/github.com/greatscottgadgets/packetry
     git fetch --tags origin
-    packetry_tag="$(heihei_git_latest || true)"
+    packetry_tag="$(heihei_git_latest ${HEIHEI_PACKETRY_ID:-""} || true)"
     if [ -n "$packetry_tag" ]
     then
       git checkout "$packetry_tag"
