@@ -19,6 +19,7 @@ check-dependencies:
 install-dotfiles: \
 	${HOME}/.bashrc \
 	${HOME}/.config/b4/templates/bmc-tree-am.template \
+	${HOME}/.config/ccache/ccache.conf \
 	${HOME}/.config/evolution/accels \
 	${HOME}/.config/fish/config.fish \
 	${HOME}/.config/helix/config.toml \
