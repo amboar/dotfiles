@@ -4,6 +4,7 @@ if status is-interactive
     # Allow hx in schroots
     set -p PATH $HOME/.cargo/bin
     set -p PATH $HOME/.local/bin/ccache
+    set -gx XDG_CONFIG_HOME $HOME/.config
     set -gx EDITOR hx
     set -gx COLORTERM truecolor
 
