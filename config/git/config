@@ -4,6 +4,7 @@
 	br = branch
 	brl = branch --remote --list
 	ca = commit --amend
+	cane = commit --amend --no-edit
 	cdiff = diff --cached
 	ci = commit --signoff
 	co = checkout
