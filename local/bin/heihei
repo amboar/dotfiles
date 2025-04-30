@@ -35,7 +35,7 @@ fi
 
 if echo $HEIHEI_UPDATES | grep -q flatpaks
 then
-  flatpak update
+  flatpak --assumeyes update
 fi
 
 if echo $HEIHEI_UPDATES | grep -q schroots
