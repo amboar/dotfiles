@@ -1,0 +1,5 @@
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
+export KBUILD_OUTPUT=$(pwd)
+export WARN=1
+export PATH=/home/andrew/.local/bin/ccache:"$PATH"

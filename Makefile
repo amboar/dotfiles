@@ -3,7 +3,7 @@ all:
 	@echo Run \`make install\` to deploy dotfile symlinks
 
 .PHONY: install
-install: check-dependencies install-dotfiles install-envrcs install-python
+install: check-dependencies install-dotfiles install-envrcs install-kconfigs install-python
 
 .PHONY: check-dependencies
 check-dependencies:
@@ -33,6 +33,10 @@ install-dotfiles: \
 	${HOME}/.inputrc \
 	${HOME}/.local/bin/ccache/arm-linux-gnueabihf-gcc \
 	${HOME}/.local/bin/ccache/arm-linux-gnueabihf-g++ \
+	${HOME}/.local/bin/ccache/aarch64-linux-gnueabihf-gcc \
+	${HOME}/.local/bin/ccache/aarch64-linux-gnueabihf-g++ \
+	${HOME}/.local/bin/ccache/clang \
+	${HOME}/.local/bin/ccache/clang++ \
 	${HOME}/.local/bin/ci \
 	${HOME}/.local/bin/clang-format-16 \
 	${HOME}/.local/bin/clang-format-17 \
@@ -80,31 +84,73 @@ ${HOME}/.%: %
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
 
-LINUX_ARM_ENVRCS = \
-	${HOME}/src/kernel.org/linux/mctp/build.aspeed_g5/.envrc \
-	${HOME}/src/kernel.org/linux/openbmc/build.aspeed_g4/.envrc \
-	${HOME}/src/kernel.org/linux/openbmc/build.aspeed_g5/.envrc \
-	${HOME}/src/kernel.org/linux/openbmc/build.multi_v5/.envrc \
-	${HOME}/src/kernel.org/linux/openbmc/build.multi_v7/.envrc \
-	${HOME}/src/kernel.org/linux/origin/build.aspeed_g4/.envrc \
-	${HOME}/src/kernel.org/linux/origin/build.aspeed_g5/.envrc \
-	${HOME}/src/kernel.org/linux/origin/build.multi_v5/.envrc \
-	${HOME}/src/kernel.org/linux/origin/build.multi_v7/.envrc
+LINUX_ARM_GCC_ENVRCS = \
+	${HOME}/src/kernel.org/linux/mctp/build.arm.aspeed_g5/.envrc \
+	${HOME}/src/kernel.org/linux/openbmc/build.arm.aspeed_g4/.envrc \
+	${HOME}/src/kernel.org/linux/openbmc/build.arm.aspeed_g5/.envrc \
+	${HOME}/src/kernel.org/linux/openbmc/build.arm.multi_v5/.envrc \
+	${HOME}/src/kernel.org/linux/openbmc/build.arm.multi_v7/.envrc \
+	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g4/.envrc \
+	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g5/.envrc \
+	${HOME}/src/kernel.org/linux/origin/build.arm.multi_v5/.envrc \
+	${HOME}/src/kernel.org/linux/origin/build.arm.multi_v7/.envrc
+
+LINUX_ARM64_GCC_ENVRCS = \
+	${HOME}/src/kernel.org/linux/openbmc/build.arm64.default/.envrc \
+	${HOME}/src/kernel.org/linux/origin/build.arm64.default/.envrc
+
+LINUX_ARM_CLANG_ENVRCS = \
+	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g5.clang/.envrc
+
+LINUX_ARM64_CLANG_ENVRCS = \
+	${HOME}/src/kernel.org/linux/origin/build.arm64.default.clang/.envrc
 
 UBOOT_ARM_ENVRCS = \
 	${HOME}/src/u-boot.org/u-boot/u-boot/build.gxp/.envrc \
 	
 .PHONY: install-envrcs
-install-envrcs: $(LINUX_ARM_ENVRCS) $(UBOOT_ARM_ENVRCS)
+install-envrcs: $(LINUX_ARM_GCC_ENVRCS) $(LINUX_ARM_CLANG_ENVRCS) $(LINUX_ARM64_GCC_ENVRCS) $(LINUX_ARM64_CLANG_ENVRCS) $(UBOOT_ARM_ENVRCS)
 
 
-$(LINUX_ARM_ENVRCS): src/kernel.org/linux/arm-envrc
+$(LINUX_ARM_GCC_ENVRCS): src/kernel.org/linux/arm-gcc-envrc
+	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
+	ln -s $(realpath $<) $@
+
+$(LINUX_ARM_CLANG_ENVRCS): src/kernel.org/linux/arm-clang-envrc
+	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
+	ln -s $(realpath $<) $@
+
+$(LINUX_ARM64_GCC_ENVRCS): src/kernel.org/linux/arm64-gcc-envrc
+	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
+	ln -s $(realpath $<) $@
+
+$(LINUX_ARM64_CLANG_ENVRCS): src/kernel.org/linux/arm64-clang-envrc
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
 
 $(UBOOT_ARM_ENVRCS): src/u-boot.org/u-boot/arm-envrc
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
+
+LINUX_CONFIGS = \
+	${HOME}/src/kernel.org/linux/mctp/build.arm.aspeed_g5/.config \
+	${HOME}/src/kernel.org/linux/openbmc/build.arm.aspeed_g4/.config \
+	${HOME}/src/kernel.org/linux/openbmc/build.arm.aspeed_g5/.config \
+	${HOME}/src/kernel.org/linux/openbmc/build.arm.multi_v7/.config \
+	${HOME}/src/kernel.org/linux/openbmc/build.arm64.default/.config \
+	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g4/.config \
+	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g5/.config \
+	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g5.clang/.config \
+	${HOME}/src/kernel.org/linux/origin/build.arm.multi_v7/.config \
+	${HOME}/src/kernel.org/linux/origin/build.arm64.default/.config \
+	${HOME}/src/kernel.org/linux/origin/build.arm64.default.clang/.config
+
+.PHONY: install-kconfigs
+install-kconfigs: $(LINUX_CONFIGS)
+
+$(LINUX_CONFIGS): ${HOME}/%/.config: %/config
+	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
+	cp $< $@
 
 .PHONY: install-python
 install-python: ${HOME}/.local/bin/python
