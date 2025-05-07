@@ -1,5 +1,6 @@
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-linux-gnu-
+export KBUILD_BUILD_TIMESTAMP=''
 export KBUILD_OUTPUT=$(pwd)
 export PATH=/home/andrew/.local/bin/ccache:"$PATH"
 export WARN=1
