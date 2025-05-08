@@ -2,7 +2,7 @@
 
 set -eux
 
-: ${HEIHEI_UPDATES:="bloaty fish flatpaks helix packetry pipx rustup schroots vms"}
+: ${HEIHEI_UPDATES:="bloaty coccinelle fish flatpaks helix packetry pipx rustup schroots vms"}
 
 APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
 
@@ -13,7 +13,8 @@ heihei_git_latest()
     echo $1
   else
     git tag --list --contains HEAD |
-      grep --invert-match ^"$(git describe --tags --always HEAD)"\$
+      grep --invert-match ^"$(git describe --tags --always HEAD)"\$ |
+      tail -n1
   fi
 }
 
@@ -114,6 +115,23 @@ then
     then
       git checkout "$packetry_tag"
       cargo install --path . --bin packetry
+    fi
+  )
+fi
+
+if echo $HEIHEI_UPDATES | grep -q coccinelle
+then
+  (
+    cd ~/src/github.com/coccinelle/coccinelle
+    git fetch --tags origin
+    coccinelle_tag="$(heihei_git_latest ${HEIHEI_COCCINELLE_ID:-""} || true)"
+    if [ -n "$coccinelle_tag" ]
+    then
+      git checkout "$coccinelle_tag"
+      ./autogen
+      ./configure --prefix=${HOME}/.local --enable-ocaml --enable-python --with-python=python3 --enable-opt
+      make -j$(nproc)
+      make install
     fi
   )
 fi
