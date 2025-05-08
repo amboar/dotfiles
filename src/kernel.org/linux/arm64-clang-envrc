@@ -1,6 +1,0 @@
-export ARCH=arm64
-export KBUILD_BUILD_TIMESTAMP=''
-export KBUILD_OUTPUT=$(pwd)
-export LLVM=1
-export PATH=/home/andrew/.local/bin/ccache:"$PATH"
-export WARN=1

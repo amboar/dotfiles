@@ -99,32 +99,18 @@ LINUX_ARM64_GCC_ENVRCS = \
 	${HOME}/src/kernel.org/linux/openbmc/build.arm64.default/.envrc \
 	${HOME}/src/kernel.org/linux/origin/build.arm64.default/.envrc
 
-LINUX_ARM_CLANG_ENVRCS = \
-	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g5.clang/.envrc
-
-LINUX_ARM64_CLANG_ENVRCS = \
-	${HOME}/src/kernel.org/linux/origin/build.arm64.default.clang/.envrc
-
 UBOOT_ARM_ENVRCS = \
 	${HOME}/src/u-boot.org/u-boot/u-boot/build.gxp/.envrc \
 	
 .PHONY: install-envrcs
-install-envrcs: $(LINUX_ARM_GCC_ENVRCS) $(LINUX_ARM_CLANG_ENVRCS) $(LINUX_ARM64_GCC_ENVRCS) $(LINUX_ARM64_CLANG_ENVRCS) $(UBOOT_ARM_ENVRCS)
+install-envrcs: $(LINUX_ARM_GCC_ENVRCS) $(LINUX_ARM64_GCC_ENVRCS) $(UBOOT_ARM_ENVRCS)
 
 
 $(LINUX_ARM_GCC_ENVRCS): src/kernel.org/linux/arm-gcc-envrc
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
 
-$(LINUX_ARM_CLANG_ENVRCS): src/kernel.org/linux/arm-clang-envrc
-	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
-	ln -s $(realpath $<) $@
-
 $(LINUX_ARM64_GCC_ENVRCS): src/kernel.org/linux/arm64-gcc-envrc
-	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
-	ln -s $(realpath $<) $@
-
-$(LINUX_ARM64_CLANG_ENVRCS): src/kernel.org/linux/arm64-clang-envrc
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
 
@@ -140,10 +126,8 @@ LINUX_CONFIGS = \
 	${HOME}/src/kernel.org/linux/openbmc/build.arm64.default/.config \
 	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g4/.config \
 	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g5/.config \
-	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g5.clang/.config \
 	${HOME}/src/kernel.org/linux/origin/build.arm.multi_v7/.config \
 	${HOME}/src/kernel.org/linux/origin/build.arm64.default/.config \
-	${HOME}/src/kernel.org/linux/origin/build.arm64.default.clang/.config
 
 .PHONY: install-kconfigs
 install-kconfigs: $(LINUX_CONFIGS)
