@@ -3,7 +3,6 @@ if status is-interactive
 
     # Allow hx in schroots
     set -p PATH $HOME/.cargo/bin
-    set -p PATH $HOME/.local/bin/ccache
     set -gx XDG_CONFIG_HOME $HOME/.config
     set -gx EDITOR hx
     set -gx COLORTERM truecolor
@@ -12,6 +11,7 @@ if status is-interactive
         direnv hook fish | source
 
         set -p PATH $HOME/.local/bin
+        set -p PATH $HOME/.local/bin/ccache
 
         set -gx BB_NUMBER_THREADS $(math $(nproc) / 4)
         set -gx PARALLEL_MAKE -j$(math $(nproc) / 2)
