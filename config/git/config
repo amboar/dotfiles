@@ -59,3 +59,5 @@
 [user]
 	email = andrew@codeconstruct.com.au
 	name = Andrew Jeffery
+[pull]
+	rebase = false
