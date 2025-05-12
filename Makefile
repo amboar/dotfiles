@@ -23,6 +23,7 @@ install-dotfiles: \
 	${HOME}/.config/evolution/accels \
 	${HOME}/.config/fish/config.fish \
 	${HOME}/.config/helix/config.toml \
+	${HOME}/.config/helix/languages.toml \
 	${HOME}/.config/gdb/gdbinit \
 	${HOME}/.config/git/config \
 	${HOME}/.config/tig/config \
