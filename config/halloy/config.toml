@@ -1,0 +1,17 @@
+# Halloy config.
+#
+# For a complete list of available options,
+# please visit https://halloy.squidowl.org/configuration/index.html
+theme = "Gruvbox"
+
+[font]
+size = 17
+
+[servers.liberachat]
+nickname = "arj"
+server = "irc.libera.chat"
+channels = ["#armlinux"]
+
+[servers.liberachat.sasl.plain]
+username = "arj"
+password_file = "/home/andrew/.config/halloy/arj/liberachat"

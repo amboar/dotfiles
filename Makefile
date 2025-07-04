@@ -22,6 +22,8 @@ install-dotfiles: \
 	${HOME}/.config/ccache/ccache.conf \
 	${HOME}/.config/evolution/accels \
 	${HOME}/.config/fish/config.fish \
+	${HOME}/.config/halloy/config.toml \
+	${HOME}/.config/halloy/themes/Gruvbox.toml \
 	${HOME}/.config/helix/config.toml \
 	${HOME}/.config/helix/languages.toml \
 	${HOME}/.config/gdb/gdbinit \
