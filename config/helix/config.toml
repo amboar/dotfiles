@@ -12,6 +12,7 @@ q = ":reflow"
 q = ":reflow"
 
 [editor]
+auto-pairs = false
 end-of-line-diagnostics = "hint"
 line-number = "relative"
 rulers = [80, 100, 120]
