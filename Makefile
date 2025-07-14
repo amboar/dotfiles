@@ -83,6 +83,9 @@ ${HOME}/.local/bin/zola: local/bin/zola
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
 
+${HOME}/.config/evolution/accels: config/evolution/accels
+	cp $< $@
+
 ${HOME}/.%: %
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
