@@ -2,7 +2,7 @@
 
 set -eux
 
-: ${HEIHEI_UPDATES:="bloaty coccinelle fish flatpaks helix packetry pipx rustup schroots vms"}
+: ${HEIHEI_UPDATES:="bloaty coccinelle fish flatpaks halloy helix packetry pipx rustup schroots vms"}
 
 APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
 
@@ -58,6 +58,20 @@ then
     until ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS upgrade -y'" </dev/null; do sleep 1; done
     until ssh -A "$M".local sudo -S sh -c "'apt $APT_OPTS autoremove -y'" </dev/null; do sleep 1; done
   done
+fi
+
+if echo $HEIHEI_UPDATES | grep -q halloy
+then
+  (
+    cd ~/src/github.com/squidowl/halloy
+    git fetch --tags origin
+    halloy_tag="$(heihei_git_latest ${HEIHEI_HALLOY_ID:-""} || true)"
+    if [ -n "$halloy_tag" ]
+    then
+      git checkout "$halloy_tag"
+      cargo install --path . --locked
+    fi
+  )
 fi
 
 if echo $HEIHEI_UPDATES | grep -q helix
