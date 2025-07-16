@@ -2,7 +2,7 @@
 
 set -eux
 
-: ${HEIHEI_UPDATES:="bloaty coccinelle fish flatpaks halloy helix packetry pipx rustup schroots vms"}
+: ${HEIHEI_UPDATES:="bloaty coccinelle fish flatpaks halloy helix packetry pipx rustup schroots vms wasm-pack"}
 
 APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
 
@@ -146,6 +146,20 @@ then
       ./configure --prefix=${HOME}/.local --enable-ocaml --enable-python --with-python=python3 --enable-opt
       make -j$(nproc)
       make install
+    fi
+  )
+fi
+
+if echo $HEIHEI_UPDATES | grep -q wasm-pack
+then
+  (
+    cd ~/src/github.com/rustwasm/wasm-pack
+    git fetch --tags origin
+    wasm_pack_tag="$(heihei_git_latest ${HEIHEI_WASM_PACK_ID:-""} || true)"
+    if [ -n "$wasm_pack_tag" ]
+    then
+      git checkout "$wasm_pack_tag"
+      cargo install --path . --locked
     fi
   )
 fi
