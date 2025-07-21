@@ -128,10 +128,12 @@ LINUX_CONFIGS = \
 	${HOME}/src/kernel.org/linux/mctp/build.arm.aspeed_g5/.config \
 	${HOME}/src/kernel.org/linux/openbmc/build.arm.aspeed_g4/.config \
 	${HOME}/src/kernel.org/linux/openbmc/build.arm.aspeed_g5/.config \
+	${HOME}/src/kernel.org/linux/openbmc/build.arm.multi_v5/.config \
 	${HOME}/src/kernel.org/linux/openbmc/build.arm.multi_v7/.config \
 	${HOME}/src/kernel.org/linux/openbmc/build.arm64.default/.config \
 	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g4/.config \
 	${HOME}/src/kernel.org/linux/origin/build.arm.aspeed_g5/.config \
+	${HOME}/src/kernel.org/linux/origin/build.arm.multi_v5/.config \
 	${HOME}/src/kernel.org/linux/origin/build.arm.multi_v7/.config \
 	${HOME}/src/kernel.org/linux/origin/build.arm64.default/.config \
 
