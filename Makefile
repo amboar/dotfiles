@@ -48,6 +48,7 @@ install-dotfiles: \
 	${HOME}/.local/bin/heihei \
 	${HOME}/.local/bin/marksman \
 	${HOME}/.local/bin/openbmc-format \
+	${HOME}/.local/bin/plantuml \
 	${HOME}/.local/bin/trixie-meson-exe-wrapper \
 	${HOME}/.local/bin/yaml-language-server \
 	${HOME}/.local/bin/zola \
@@ -71,6 +72,14 @@ ${HOME}/.local/bin/marksman-linux-x64:
 
 ${HOME}/.local/bin/marksman: ${HOME}/.local/bin/marksman-linux-x64
 	ln -s $< $@
+
+${HOME}/.local/bin/plantuml-1.2025.4.jar:
+	wget --quiet --directory-prefix=$(dir $@) https://github.com/plantuml/plantuml/releases/download/v1.2025.4/plantuml-1.2025.4.jar
+	echo "26518e14a3a04100cd76c0d96cab2d1171f36152215edd9790a28d20268200c1  $@" | sha256sum --check
+
+${HOME}/.local/bin/plantuml: ${HOME}/.local/bin/plantuml-1.2025.4.jar
+	printf "#!/usr/bin/sh\nexec java -jar $< $$\52\n" | tee $@
+	chmod +x $@
 
 ${HOME}/.local/bin/yaml-language-server: local/bin/yaml-language-server
 	docker pull quay.io/redhat-developer/yaml-language-server:1.14.0
