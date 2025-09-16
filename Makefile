@@ -22,6 +22,7 @@ install-dotfiles: \
 	${HOME}/.config/ccache/ccache.conf \
 	${HOME}/.config/evolution/accels \
 	${HOME}/.config/fish/config.fish \
+	${HOME}/.config/fish/functions/fish_prompt.fish \
 	${HOME}/.config/halloy/config.toml \
 	${HOME}/.config/halloy/themes/Gruvbox.toml \
 	${HOME}/.config/helix/config.toml \
@@ -52,7 +53,6 @@ install-dotfiles: \
 	${HOME}/.local/bin/trixie-meson-exe-wrapper \
 	${HOME}/.local/bin/yaml-language-server \
 	${HOME}/.local/bin/zola \
-	${HOME}/.local/share/fish/functions/fish_prompt.fish \
 	${HOME}/.local/share/meson/cross/aarch64 \
 	${HOME}/.local/share/meson/cross/arm \
 	${HOME}/.local/share/meson/cross/gcc-13 \
