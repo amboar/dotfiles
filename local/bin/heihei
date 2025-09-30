@@ -12,10 +12,26 @@ heihei_git_latest()
   then
     echo $1
   else
-    git tag --list --contains HEAD |
-      grep --invert-match ^"$(git describe --tags --always HEAD)"\$ |
-      tail -n1
+    # May print nothing if current commit is ahead of most recent tag
+    git tag --sort=-taggerdate --sort=-version:refname --contains $(git merge-base HEAD origin/HEAD) |
+      grep -E '^v?[0-9]+[.]' |
+      head -n1
   fi
+}
+
+heihei_git_changed() {
+  if [ $# -eq 0 ]
+  then
+    return 1
+  fi
+  # Account for empty $1, where current commit is ahead of most recent tag
+  if [ -z $1 ]
+  then
+    return 1
+  fi
+  # HEAD and $1 may name different object types, in which case we should only
+  # test equivalence once they are both resolved to their corresponding commits
+  [ $(git rev-parse HEAD^{commit}) != $(git rev-parse ${1}^{commit}) ]
 }
 
 # SSH authentication
@@ -65,8 +81,8 @@ then
   (
     cd ~/src/github.com/squidowl/halloy
     git fetch --tags origin
-    halloy_tag="$(heihei_git_latest ${HEIHEI_HALLOY_ID:-""} || true)"
-    if [ -n "$halloy_tag" ]
+    halloy_tag="$(heihei_git_latest ${HEIHEI_HALLOY_ID:-""})"
+    if heihei_git_changed "$halloy_tag"
     then
       git checkout "$halloy_tag"
       cargo install --path . --locked
@@ -79,8 +95,8 @@ then
   (
     cd ~/src/github.com/helix-editor/helix
     git fetch --tags origin
-    helix_tag="$(heihei_git_latest ${HEIHEI_HELIX_ID:-""} || true)"
-    if [ -n "$helix_tag" ]
+    helix_tag="$(heihei_git_latest ${HEIHEI_HELIX_ID:-""})"
+    if heihei_git_changed "$helix_tag"
     then
       git checkout "$helix_tag"
       cargo install --path helix-term --locked
@@ -93,8 +109,8 @@ then
   (
     cd ~/src/github.com/google/bloaty
     git fetch --tags origin
-    bloaty_tag="$(heihei_git_latest ${HEIHEI_BLOATY_ID:-""} || true)"
-    if [ -n "$bloaty_tag" ]
+    bloaty_tag="$(heihei_git_latest ${HEIHEI_BLOATY_ID:-""})"
+    if heihei_git_changed "$bloaty_tag"
     then
       git checkout "$bloaty_tag"
       cmake --build build
@@ -108,8 +124,8 @@ then
   (
     cd ~/src/github.com/fish-shell/fish-shell
     git fetch --tags origin
-    fish_tag="$(heihei_git_latest ${HEIHEI_FISH_ID:-""} || true)"
-    if [ -n "$fish_tag" ]
+    fish_tag="$(heihei_git_latest ${HEIHEI_FISH_ID:-""})"
+    if heihei_git_changed "$fish_tag"
     then
       git checkout "$fish_tag"
       cmake -DCMAKE_INSTALL_PREFIX="${HOME}"/.local -B build
@@ -124,8 +140,8 @@ then
   (
     cd ~/src/github.com/greatscottgadgets/packetry
     git fetch --tags origin
-    packetry_tag="$(heihei_git_latest ${HEIHEI_PACKETRY_ID:-""} || true)"
-    if [ -n "$packetry_tag" ]
+    packetry_tag="$(heihei_git_latest ${HEIHEI_PACKETRY_ID:-""})"
+    if heihei_git_changed "$packetry_tag"
     then
       git checkout "$packetry_tag"
       cargo install --path . --bin packetry
@@ -138,8 +154,8 @@ then
   (
     cd ~/src/github.com/coccinelle/coccinelle
     git fetch --tags origin
-    coccinelle_tag="$(heihei_git_latest ${HEIHEI_COCCINELLE_ID:-""} || true)"
-    if [ -n "$coccinelle_tag" ]
+    coccinelle_tag="$(heihei_git_latest ${HEIHEI_COCCINELLE_ID:-""})"
+    if heihei_git_changed "$coccinelle_tag"
     then
       git checkout "$coccinelle_tag"
       ./autogen
@@ -155,8 +171,8 @@ then
   (
     cd ~/src/github.com/rustwasm/wasm-pack
     git fetch --tags origin
-    wasm_pack_tag="$(heihei_git_latest ${HEIHEI_WASM_PACK_ID:-""} || true)"
-    if [ -n "$wasm_pack_tag" ]
+    wasm_pack_tag="$(heihei_git_latest ${HEIHEI_WASM_PACK_ID:-""})"
+    if heihei_git_changed "$wasm_pack_tag"
     then
       git checkout "$wasm_pack_tag"
       cargo install --path . --locked
