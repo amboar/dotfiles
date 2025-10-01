@@ -113,6 +113,10 @@ then
     if heihei_git_changed "$bloaty_tag"
     then
       git checkout "$bloaty_tag"
+      git submodule update
+
+      # BUILD_TESTING=OFF: Work around v1.1 missing `#include <cstdint>` in tests/fuzz_driver.cc
+      cmake -S . -B build -D BUILD_TESTING=OFF -D CMAKE_INSTALL_PREFIX="${HOME}"/.local
       cmake --build build
       cmake --build build --target install
     fi
