@@ -26,6 +26,7 @@
 	sw = switch
 [b4]
 	linkmask = https://patch.msgid.link/%s
+	shazam-am-flags = --3way
 [branch]
 	sort = -committerdate
 [commit]
