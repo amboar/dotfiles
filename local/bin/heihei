@@ -2,7 +2,7 @@
 
 set -eux
 
-: ${HEIHEI_UPDATES:="bloaty coccinelle fish flatpaks halloy helix packetry pipx rustup schroots vms wasm-pack"}
+: ${HEIHEI_UPDATES:="bloaty coccinelle fish flatpaks halloy heihei helix packetry pipx rustup schroots vms wasm-pack"}
 
 APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
 
@@ -38,6 +38,11 @@ heihei_git_changed() {
 if echo $HEIHEI_UPDATES | grep -q vms
 then
   until gpg --card-status >/dev/null 2>&1 ; do read -p "Insert nitrokey: " V; done
+fi
+
+if echo $HEIHEI_UPDATES | grep -q heiehi
+then
+  sudo apt update && sudo apt upgrade --yes
 fi
 
 if echo $HEIHEI_UPDATES | grep -q pipx
