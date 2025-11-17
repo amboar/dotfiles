@@ -40,7 +40,7 @@ then
   until gpg --card-status >/dev/null 2>&1 ; do read -p "Insert nitrokey: " V; done
 fi
 
-if echo $HEIHEI_UPDATES | grep -q heiehi
+if echo $HEIHEI_UPDATES | grep -q heihei
 then
   sudo apt update && sudo apt upgrade --yes
 fi
