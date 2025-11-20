@@ -42,7 +42,7 @@ fi
 
 if echo $HEIHEI_UPDATES | grep -q heihei
 then
-  sudo apt update && sudo apt upgrade --yes
+  sudo apt $APT_OPTS update && sudo apt $APT_OPTS upgrade --yes
 fi
 
 if echo $HEIHEI_UPDATES | grep -q pipx
