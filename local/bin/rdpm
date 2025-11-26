@@ -1,0 +1,16 @@
+#!/usr/bin/sh
+
+set -eu
+
+RDPM_DEV=$1
+RDPM_MODE=$2
+
+case "$RDPM_MODE" in
+	auto|on)
+		echo "$RDPM_MODE" > "$(dirname "$(grep -lr "$(stat --format="%Hr:%Lr" "$(realpath "$RDPM_DEV")")" /sys 2>/dev/null)")"/power/control
+		;;
+	*)
+		cat "$0"
+		exit 1
+		;;
+esac

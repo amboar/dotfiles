@@ -50,6 +50,7 @@ install-dotfiles: \
 	${HOME}/.local/bin/marksman \
 	${HOME}/.local/bin/openbmc-format \
 	${HOME}/.local/bin/plantuml \
+	${HOME}/.local/bin/rdpm \
 	${HOME}/.local/bin/trixie-meson-exe-wrapper \
 	${HOME}/.local/bin/yaml-language-server \
 	${HOME}/.local/bin/zola \
