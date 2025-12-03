@@ -1,0 +1,8 @@
+#!/usr/bin/sh
+
+set -eu
+
+SRC="$1"
+DST="$2"
+
+exec pdftk "$SRC" input_pw PROMPT output "$DST"

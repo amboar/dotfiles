@@ -52,6 +52,7 @@ install-dotfiles: \
 	${HOME}/.local/bin/plantuml \
 	${HOME}/.local/bin/rdpm \
 	${HOME}/.local/bin/trixie-meson-exe-wrapper \
+	${HOME}/.local/bin/updf \
 	${HOME}/.local/bin/yaml-language-server \
 	${HOME}/.local/bin/zola \
 	${HOME}/.local/share/meson/cross/aarch64 \
