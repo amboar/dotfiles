@@ -137,7 +137,7 @@ then
     if heihei_git_changed "$fish_tag"
     then
       git checkout "$fish_tag"
-      cmake -DCMAKE_INSTALL_PREFIX="${HOME}"/.local -B build
+      cmake -DWITH_DOCS=OFF -DCMAKE_INSTALL_PREFIX="${HOME}"/.local -B build
       cmake --build build
       cmake --install build
     fi
