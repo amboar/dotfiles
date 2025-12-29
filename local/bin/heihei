@@ -2,6 +2,7 @@
 
 set -eux
 
+: ${HEIHEI_FORCE:=0}
 : ${HEIHEI_UPDATES:="bloaty coccinelle fish flatpaks halloy heihei helix packetry pipx rustup schroots vms wasm-pack"}
 
 APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
@@ -31,7 +32,7 @@ heihei_git_changed() {
   fi
   # HEAD and $1 may name different object types, in which case we should only
   # test equivalence once they are both resolved to their corresponding commits
-  [ $(git rev-parse HEAD^{commit}) != $(git rev-parse ${1}^{commit}) ]
+  [ $(git rev-parse HEAD^{commit}) != $(git rev-parse ${1}^{commit}) ] || [ $HEIHEI_FORCE -eq 1 ]
 }
 
 # SSH authentication
