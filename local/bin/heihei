@@ -3,7 +3,7 @@
 set -eux
 
 : ${HEIHEI_FORCE:=0}
-: ${HEIHEI_UPDATES:="bloaty coccinelle fish flatpaks halloy heihei helix packetry pipx rustup schroots vms wasm-pack"}
+: ${HEIHEI_UPDATES:="binwalk bloaty coccinelle fish flatpaks halloy heihei helix packetry pipx rustup schroots vms wasm-pack"}
 
 APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
 
@@ -185,6 +185,20 @@ then
     if heihei_git_changed "$wasm_pack_tag"
     then
       git checkout "$wasm_pack_tag"
+      cargo install --path . --locked
+    fi
+  )
+fi
+
+if echo $HEIHEI_UPDATES | grep -q binwalk
+then
+  (
+    cd ~/src/github.com/refirmlabs/binwalk
+    git fetch --tags origin
+    binwalk_tag="$(heihei_git_latest ${HEIHEI_BINWALK_ID:-""})"
+    if heihei_git_changed "$binwalk_tag"
+    then
+      git checkout "$binwalk_tag"
       cargo install --path . --locked
     fi
   )
