@@ -22,3 +22,4 @@ set show-changes = no
 #set main-view-commit-title-graph = v1
 
 bind main X !git cherry-pick -sx %(commit)
+bind main R !git rebase -i %(commit)^
