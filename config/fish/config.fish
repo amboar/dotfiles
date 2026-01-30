@@ -23,5 +23,7 @@ if status is-interactive
 
         set -gx SSH_AUTH_SOCK $(gpgconf --list-dirs agent-ssh-socket)
         gpgconf --launch gpg-agent
+
+        set -gx CLANGD_FLAGS --enable-config
     end
 end
