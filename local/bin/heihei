@@ -138,7 +138,11 @@ then
     if heihei_git_changed "$fish_tag"
     then
       git checkout "$fish_tag"
-      cmake -DWITH_DOCS=OFF -DCMAKE_INSTALL_PREFIX="${HOME}"/.local -B build
+      # Release 4.4.0:
+      # CMake Error at cmake/Rust.cmake:25 (message):
+      #  the WITH_GETTEXT option is no longer supported, use
+      #  -DWITH_MESSAGE_LOCALIZATION=ON|OFF
+      cmake -DWITH_DOCS=OFF -DWITH_MESSAGE_LOCALIZATION=OFF -DCMAKE_INSTALL_PREFIX="${HOME}"/.local -B build
       cmake --build build
       cmake --install build
     fi
