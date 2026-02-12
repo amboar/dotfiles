@@ -3,7 +3,7 @@
 set -eux
 
 : ${HEIHEI_FORCE:=0}
-: ${HEIHEI_UPDATES:="binwalk bloaty coccinelle fish flatpaks halloy heihei helix packetry pipx rustup schroots vms wasm-pack"}
+: ${HEIHEI_UPDATES:="binwalk bloaty coccinelle fish flatpaks halloy heihei helix packetry pipx rustup schroots sparse vms wasm-pack"}
 
 APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
 
@@ -204,6 +204,20 @@ then
     then
       git checkout "$binwalk_tag"
       cargo install --path . --locked
+    fi
+  )
+fi
+
+if echo $HEIHEI_UPDATES | grep -q sparse
+then
+  (
+    cd ~/src/kernel.org/devel/sparse/sparse
+    git fetch --tags origin
+    sparse_tag="$(heihei_git_latest ${HEIHEI_SPARSE_ID:-""})"
+    if heihei_git_changed "$sparse_tag"
+    then
+      git checkout "$sparse_tag"
+      PREFIX="$HOME"/.local make -j$(nproc) install-bin
     fi
   )
 fi
