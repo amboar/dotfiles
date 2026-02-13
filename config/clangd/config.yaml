@@ -1,2 +1,4 @@
 CompileFlags:
   Remove: -mabi=lp64
+Completion:
+  HeaderInsertion: Never
