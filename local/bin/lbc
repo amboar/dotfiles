@@ -1,0 +1,31 @@
+#!/usr/bin/sh
+#
+# Linux Build Config
+#
+# Manage .config files in my kernel worktrees
+
+set -eu
+set -x
+
+[ $# -ge 4 ]
+
+DOTFILES="$(realpath "$(dirname "$(realpath "$(command -v "$0")")")"/../..)"
+SUBCMD=$1
+WORKTREE=$2
+ARCH=$3
+BOARD=$4
+
+[ "$SUBCMD" = "reset" ] || [ "$SUBCMD" = "update" ]
+
+KPATH=src/kernel.org/linux/"${WORKTREE}"/build."${ARCH}"."${BOARD}"
+
+case "$SUBCMD" in
+  reset)
+    rm -f "${HOME}"/"${KPATH}"/.config
+    make -C "$DOTFILES" "${HOME}"/"${KPATH}"/.config
+    ;;
+  update)
+    make -C "${HOME}"/"${KPATH}" savedefconfig
+    cp "${HOME}"/"${KPATH}"/defconfig "${DOTFILES}"/"${KPATH}"/config
+    ;;
+esac

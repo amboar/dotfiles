@@ -48,6 +48,7 @@ install-dotfiles: \
 	${HOME}/.local/bin/clang-tidy-16 \
 	${HOME}/.local/bin/clang-tidy-17 \
 	${HOME}/.local/bin/heihei \
+	${HOME}/.local/bin/lbc \
 	${HOME}/.local/bin/marksman \
 	${HOME}/.local/bin/openbmc-format \
 	${HOME}/.local/bin/plantuml \
