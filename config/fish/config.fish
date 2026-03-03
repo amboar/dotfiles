@@ -25,5 +25,6 @@ if status is-interactive
         gpgconf --launch gpg-agent
 
         set -gx CLANGD_FLAGS --enable-config
+        set -gx CLANG_VERSION 23
     end
 end

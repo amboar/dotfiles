@@ -43,10 +43,9 @@ install-dotfiles: \
 	${HOME}/.local/bin/ccache/clang \
 	${HOME}/.local/bin/ccache/clang++ \
 	${HOME}/.local/bin/ci \
-	${HOME}/.local/bin/clang-format-16 \
-	${HOME}/.local/bin/clang-format-17 \
-	${HOME}/.local/bin/clang-tidy-16 \
-	${HOME}/.local/bin/clang-tidy-17 \
+	${HOME}/.local/bin/clang \
+	${HOME}/.local/bin/clang++ \
+	${HOME}/.local/bin/clang-tidy \
 	${HOME}/.local/bin/heihei \
 	${HOME}/.local/bin/lbc \
 	${HOME}/.local/bin/marksman \
@@ -161,4 +160,7 @@ $(LINUX_CONFIGS): ${HOME}/%/.config: %/config
 install-python: ${HOME}/.local/bin/python
 
 ${HOME}/.local/bin/python: $(shell command -v python3)
+	ln -s $< $@
+
+${HOME}/.local/bin/clang ${HOME}/.local/bin/clang++ ${HOME}/.local/bin/clang-tidy: ${HOME}/.local/bin/clang-dispatch
 	ln -s $< $@
