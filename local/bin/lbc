@@ -15,11 +15,20 @@ WORKTREE=$2
 ARCH=$3
 BOARD=$4
 
-[ "$SUBCMD" = "reset" ] || [ "$SUBCMD" = "update" ]
+[ "$SUBCMD" = "reconfigure" ] || [ "$SUBCMD" = "reset" ] || [ "$SUBCMD" = "update" ]
 
 KPATH=src/kernel.org/linux/"${WORKTREE}"/build."${ARCH}"."${BOARD}"
 
 case "$SUBCMD" in
+  reconfigure)
+    lbc reset "$WORKTREE" "$ARCH" "$BOARD"
+    cd "${HOME}"/"${KPATH}"
+    # https://www.shellcheck.net/wiki/SC1090
+    # shellcheck source=/dev/null
+    . "$(realpath .envrc)"
+    make -C .. olddefconfig
+    make -j"$(nproc)" clean
+    ;;
   reset)
     rm -f "${HOME}"/"${KPATH}"/.config
     make -C "$DOTFILES" "${HOME}"/"${KPATH}"/.config
