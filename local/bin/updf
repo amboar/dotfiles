@@ -3,6 +3,8 @@
 set -eu
 
 SRC="$1"
-DST="$2"
+DST="$(mktemp)"
 
-exec pdftk "$SRC" input_pw PROMPT output "$DST"
+pdftk "$SRC" input_pw PROMPT output "$DST"
+mv "$SRC" "$(basename "$SRC" .pdf)".enc.pdf
+mv "$DST" "$SRC"
