@@ -92,6 +92,7 @@ then
     then
       git checkout "$halloy_tag"
       cargo install --path . --locked
+      cargo clean
     fi
   )
 fi
@@ -106,6 +107,7 @@ then
     then
       git checkout "$helix_tag"
       cargo install --path helix-term --locked
+      cargo clean
     fi
   )
 fi
@@ -125,6 +127,7 @@ then
       cmake -S . -B build -D BUILD_TESTING=OFF -D CMAKE_INSTALL_PREFIX="${HOME}"/.local
       cmake --build build
       cmake --build build --target install
+      rm -rf build
     fi
   )
 fi
@@ -145,6 +148,7 @@ then
       cmake -DWITH_DOCS=OFF -DWITH_MESSAGE_LOCALIZATION=OFF -DCMAKE_INSTALL_PREFIX="${HOME}"/.local -B build
       cmake --build build
       cmake --install build
+      rm -rf build
     fi
   )
 fi
@@ -159,6 +163,7 @@ then
     then
       git checkout "$packetry_tag"
       cargo install --path . --bin packetry
+      cargo clean
     fi
   )
 fi
@@ -190,6 +195,7 @@ then
     then
       git checkout "$wasm_pack_tag"
       cargo install --path . --locked
+      cargo clean
     fi
   )
 fi
@@ -204,6 +210,7 @@ then
     then
       git checkout "$binwalk_tag"
       cargo install --path . --locked
+      cargo clean
     fi
   )
 fi
