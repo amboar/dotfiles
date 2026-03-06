@@ -23,3 +23,4 @@ set show-changes = no
 
 bind main X !git cherry-pick -sx %(commit)
 bind main R !git rebase -i %(commit)^
+bind diff H move-first-line
