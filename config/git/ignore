@@ -1,0 +1,8 @@
+# clangd
+.cache/
+
+# git
+.gitignore
+
+# meson
+subprojects/
