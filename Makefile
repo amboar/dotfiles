@@ -120,9 +120,12 @@ LINUX_ARM64_GCC_ENVRCS = \
 
 UBOOT_ARM_ENVRCS = \
 	${HOME}/src/u-boot.org/u-boot/u-boot/build.gxp/.envrc \
+
+UBOOT_ARM64_ENVRCS = \
+	${HOME}/src/u-boot.org/u-boot/u-boot/origin/build.arm64.sige5-rk3576/.envrc
 	
 .PHONY: install-envrcs
-install-envrcs: $(LINUX_ARM_GCC_ENVRCS) $(LINUX_ARM64_GCC_ENVRCS) $(UBOOT_ARM_ENVRCS)
+install-envrcs: $(LINUX_ARM_GCC_ENVRCS) $(LINUX_ARM64_GCC_ENVRCS) $(UBOOT_ARM_ENVRCS) $(UBOOT_ARM64_ENVRCS)
 
 
 $(LINUX_ARM_GCC_ENVRCS): src/kernel.org/linux/arm-gcc-envrc
@@ -134,6 +137,10 @@ $(LINUX_ARM64_GCC_ENVRCS): src/kernel.org/linux/arm64-gcc-envrc
 	ln -s $(realpath $<) $@
 
 $(UBOOT_ARM_ENVRCS): src/u-boot.org/u-boot/arm-envrc
+	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
+	ln -s $(realpath $<) $@
+
+$(UBOOT_ARM64_ENVRCS): src/u-boot.org/u-boot/arm64-envrc
 	[ -z "$(dir $@)" ] || mkdir -p "$(dir $@)"
 	ln -s $(realpath $<) $@
 
