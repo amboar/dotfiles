@@ -3,7 +3,7 @@
 set -eux
 
 : ${HEIHEI_FORCE:=0}
-: ${HEIHEI_UPDATES:="binwalk bloaty coccinelle fish flatpaks halloy heihei helix packetry pipx rustup schroots sparse vms wasm-pack"}
+: ${HEIHEI_UPDATES:="binwalk bloaty coccinelle fish flatpaks halloy heihei helix packetry pipx rustup schroots sparse vms"}
 
 APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
 
