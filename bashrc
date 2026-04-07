@@ -124,12 +124,6 @@ then
     return
 fi
 
-export BB_NUMBER_THREADS=$(($(nproc) / 4))
-export PARALLEL_MAKE="-j$(($(nproc) / 2))"
-export DL_DIR=/var/cache/bitbake/downloads
-export SSTATE_DIR=/var/cache/bitbake/sstate
-export BB_ENV_PASSTHROUGH_ADDITIONS="DL_DIR SSTATE_DIR"
-
 PATH=/home/andrew/.local/bin:"$PATH"
 
 export EDITOR=hx

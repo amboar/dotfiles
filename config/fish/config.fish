@@ -17,7 +17,8 @@ if status is-interactive
         set -gx PARALLEL_MAKE -j$(math $(nproc) / 2)
         set -gx DL_DIR /var/cache/bitbake/downloads
         set -gx SSTATE_DIR /var/cache/bitbake/sstate
-        set -gx BB_ENV_PASSTHROUGH_ADDITIONS "DL_DIR SSTATE_DIR"
+        set -gx BB_HASHSERVE_DB_DIR "$SSTATE_DIR"
+        set -gx BB_ENV_PASSTHROUGH_ADDITIONS "BB_HASHSERVE_DB_DIR DL_DIR SSTATE_DIR"
 
         set -gx QNET -net nic -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostname=qemu
 
