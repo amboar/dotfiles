@@ -13,12 +13,13 @@ if status is-interactive
         set -p PATH $HOME/.local/bin
         set -p PATH $HOME/.local/bin/ccache
 
-        set -gx BB_NUMBER_THREADS $(math $(nproc) / 4)
-        set -gx PARALLEL_MAKE -j$(math $(nproc) / 2)
-        set -gx DL_DIR /var/cache/bitbake/downloads
-        set -gx SSTATE_DIR /var/cache/bitbake/sstate
         set -gx BB_HASHSERVE_DB_DIR "$SSTATE_DIR"
-        set -gx BB_ENV_PASSTHROUGH_ADDITIONS "BB_HASHSERVE_DB_DIR DL_DIR SSTATE_DIR"
+        set -gx BB_NUMBER_THREADS $(math $(nproc) / 4)
+        set -gx BB_SCHEDULER completion
+        set -gx DL_DIR /var/cache/bitbake/downloads
+        set -gx PARALLEL_MAKE -j$(math $(nproc) / 2)
+        set -gx SSTATE_DIR /var/cache/bitbake/sstate
+        set -gx BB_ENV_PASSTHROUGH_ADDITIONS "BB_HASHSERVE_DB_DIR BB_SCHEDULER DL_DIR SSTATE_DIR"
 
         set -gx QNET -net nic -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostname=qemu
 
