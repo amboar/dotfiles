@@ -228,3 +228,13 @@ then
     fi
   )
 fi
+
+# Not included in $HEIHEI_UPDATES by default as whitequark doesn't appear to
+# use tags
+if echo $HEIHEI_UPDATES | grep -q glasgow
+then
+  (
+    git -C ~/src/github.com/glasgowembedded/glasgow pull
+    pipx reinstall glasgow
+  )
+fi
