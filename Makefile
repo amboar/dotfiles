@@ -30,6 +30,7 @@ install-dotfiles: \
 	${HOME}/.config/helix/languages.toml \
 	${HOME}/.config/gdb/gdbinit \
 	${HOME}/.config/git/config \
+	${HOME}/.config/git/github.com/squidowl/halloy/config.inc \
 	${HOME}/.config/git/ignore \
 	${HOME}/.config/tig/config \
 	${HOME}/.config/tmux/tmux.conf \

@@ -62,3 +62,5 @@
 	name = Andrew Jeffery
 [pull]
 	rebase = false
+[includeIf "hasconfig:remote.*.url:git@github.com:squidowl/halloy.git"]
+	path = github.com/squidowl/halloy/config.inc
