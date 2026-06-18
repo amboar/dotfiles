@@ -10,7 +10,7 @@ size = 17
 [servers.liberachat]
 nickname = "arj"
 server = "irc.libera.chat"
-channels = ["#armlinux", "#devicetree"]
+channels = ["#armlinux", "#devicetree", "#glasgow"]
 
 [servers.liberachat.sasl.plain]
 username = "arj"
