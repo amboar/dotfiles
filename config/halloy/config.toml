@@ -4,6 +4,18 @@
 # please visit https://halloy.squidowl.org/configuration/index.html
 theme = "Gruvbox"
 
+# https://halloy.chat/guides/single-pane
+[actions.buffer]
+click_channel_name = "replace-pane"
+click_highlight = "replace-pane"
+click_username = "replace-pane"
+local = "replace-pane"
+message_channel = "replace-pane"
+message_user = "replace-pane"
+
+[actions.sidebar]
+buffer = "replace-pane"
+
 [font]
 size = 17
 
