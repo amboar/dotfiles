@@ -4,3 +4,5 @@ export KBUILD_BUILD_TIMESTAMP=''
 export KBUILD_OUTPUT=$(pwd)
 export PATH=/home/andrew/.local/bin/ccache:"$PATH"
 export WARN=1
+
+export CLANGD_FLAGS="$CLANGD_FLAGS --compile-commands-dir=${KBUILD_OUTPUT}"
