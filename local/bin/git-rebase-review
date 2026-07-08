@@ -1,0 +1,10 @@
+#!/usr/bin/awk -E
+
+@include "inplace"
+
+/^[presfxbdltmu]/ {
+	print
+	print "label review"
+	print "exec git reset HEAD^; if $EDITOR; then git reset --hard; git clean -df; else git rebase --abort; fi"
+	print "reset review";
+}

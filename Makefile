@@ -48,6 +48,7 @@ install-dotfiles: \
 	${HOME}/.local/bin/clang \
 	${HOME}/.local/bin/clang++ \
 	${HOME}/.local/bin/clang-tidy \
+	${HOME}/.local/bin/git-rebase-review \
 	${HOME}/.local/bin/heihei \
 	${HOME}/.local/bin/lbc \
 	${HOME}/.local/bin/marksman \
