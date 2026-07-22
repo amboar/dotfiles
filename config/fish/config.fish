@@ -26,7 +26,7 @@ if status is-interactive
         set -gx SSH_AUTH_SOCK $(gpgconf --list-dirs agent-ssh-socket)
         gpgconf --launch gpg-agent
 
-        set -gx CLANGD_FLAGS --enable-config
+        set -gx CLANGD_FLAGS --enable-config -j $(nproc --ignore 2)
         set -gx CLANG_VERSION 23
     end
 end
