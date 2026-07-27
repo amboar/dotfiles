@@ -3,7 +3,7 @@
 set -eux
 
 : ${HEIHEI_FORCE:=0}
-: ${HEIHEI_UPDATES:="binwalk bloaty coccinelle fish flatpaks halloy heihei helix packetry pipx rustup schroots sparse vms"}
+: ${HEIHEI_UPDATES:="binwalk bloaty coccinelle fish flatpaks halloy heihei helix packetry pipx rustup schroots sparse tlafmt vms"}
 
 APT_OPTS="-o Apt::Cmd::Disable-Script-Warning=true"
 
@@ -236,5 +236,20 @@ then
   (
     git -C ~/src/github.com/glasgowembedded/glasgow pull
     pipx reinstall glasgow
+  )
+fi
+
+if echo $HEIHEI_UPDATES | grep -q tlafmt
+then
+  (
+    cd ~/src/github.com/domodwyer/tlafmt
+    git fetch --tags origin
+    tlafmt_tag="$(heihei_git_latest ${HEIHEI_TLAFMT_ID:-""})"
+    if heihei_git_changed "$tlafmt_tag"
+    then
+      git checkout "$tlafmt_tag"
+      cargo install --path . --locked
+      cargo clean
+    fi
   )
 fi
