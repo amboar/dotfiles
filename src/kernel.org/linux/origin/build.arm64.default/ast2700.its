@@ -1,0 +1,55 @@
+/dts-v1/;
+
+/ {
+        description = "Kernel FIT image";
+        #address-cells = <2>;
+        images {
+                kernel-1 {
+                        description = "Linux kernel";
+                        type = "kernel";
+                        compression = "none";
+                        data = /incbin/("arch/arm64/boot/Image");
+                        arch = "arm64";
+                        os = "linux";
+                        load = <0x4 0x00000000>;
+                        entry = <0x4 0x00000000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-ast2700-evb.dtb {
+                        description = "Flattened Device Tree blob";
+                        type = "flat_dt";
+                        compression = "none";
+                        data = /incbin/("arch/arm64/boot/dts/aspeed/ast2700-evb.dtb");
+                        arch = "arm64";
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                ramdisk-1 {
+                        description = "buildroot-initramfs";
+                        type = "ramdisk";
+                        compression = "none";
+                        data = /incbin/("/home/andrew/Artefacts/buildroot.org/armv8.busybox.cpio/output/images/rootfs.cpio");
+                        arch = "arm64";
+                        os = "linux";
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+        };
+        configurations {
+                default = "conf-ast2700-evb.dtb";
+                conf-ast2700-evb.dtb {
+                        description = "1 Linux kernel, FDT blob, ramdisk";
+                        kernel = "kernel-1";
+                        fdt = "fdt-ast2700-evb.dtb";
+                        ramdisk = "ramdisk-1";
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+        };
+};
+

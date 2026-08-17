@@ -1,0 +1,19 @@
+#!/usr/bin/expect -f
+
+set imgs /home/andrew/Artefacts/github.com/aspeedtech-bmc/openbmc/releases/v11.03/ast2700-default-image
+
+spawn /home/andrew/src/qemu.org/qemu/origin/build/qemu-system-aarch64 -M ast2700a2-evb -device loader,force-raw=on,addr=0x400000000,file=$imgs/u-boot.bin -device loader,force-raw=on,addr=0x430000000,file=$imgs/trusted-firmware-a/bl31.bin -device loader,force-raw=on,addr=0x430080000,file=$imgs/optee/tee-raw.bin -device loader,cpu-num=0,addr=0x430000000 -device loader,cpu-num=1,addr=0x430000000 -device loader,cpu-num=2,addr=0x430000000 -device loader,cpu-num=3,addr=0x430000000 -smp 4 -drive file=$imgs/image-bmc,format=raw,if=mtd -nographic -net nic -net user,hostfwd=:127.0.0.1:2222-:22,hostfwd=:127.0.0.1:2443-:443,hostname=qemu,tftp=/home/andrew/src/kernel.org/linux/origin/build.arm64.default/tftp
+
+set timeout 120
+
+expect "Hit any key to stop autoboot:"
+send "\n"
+expect "=>"
+send "setenv loadaddr 0x410000000\n"
+expect "=>"
+send "dhcp 10.0.2.2:ast2700.itb\n"
+expect "=>"
+send "setenv bootargs console=ttyS0,115200n8 root=/dev/ram rw earlycon\n"
+expect "=>"
+send "bootm\n"
+interact

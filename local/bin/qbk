@@ -1,0 +1,5 @@
+#!/usr/bin/sh
+
+set -eu
+
+exec qbk-$QBK_MACHINE

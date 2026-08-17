@@ -54,6 +54,9 @@ install-dotfiles: \
 	${HOME}/.local/bin/marksman \
 	${HOME}/.local/bin/openbmc-format \
 	${HOME}/.local/bin/plantuml \
+	${HOME}/.local/bin/qbk \
+	${HOME}/.local/bin/qbk-ast2600 \
+	${HOME}/.local/bin/qbk-ast2700 \
 	${HOME}/.local/bin/rdpm \
 	${HOME}/.local/bin/trixie-meson-exe-wrapper \
 	${HOME}/.local/bin/updf \

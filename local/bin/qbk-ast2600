@@ -1,0 +1,7 @@
+#!/usr/bin/sh
+
+set -eu
+
+set -x
+
+exec qemu-system-arm -M ast2600-evb -kernel arch/arm/boot/zImage -dtb arch/arm/boot/dts/aspeed/aspeed-ast2600-evb.dtb -initrd /home/andrew/Artefacts/buildroot.org/arm.busybox.cpio/output/images/rootfs.cpio -nographic

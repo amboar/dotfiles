@@ -1,0 +1,62 @@
+/dts-v1/;
+
+/ {
+        description = "Kernel fitImage for Phosphor OpenBMC (Phosphor OpenBMC Project Reference Distro)/6.12.59+git/cc-nvme-mi";
+        #address-cells = <1>;
+
+        images {
+                kernel-1 {
+                        description = "Linux kernel";
+                        data = /incbin/("arch/arm/boot/zImage");
+                        type = "kernel";
+                        arch = "arm";
+                        os = "linux";
+                        compression = "none";
+                        load = <0x80001000>;
+                        entry = <0x80001000>;
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                fdt-aspeed-ast2600-evb.dtb {
+                        description = "Flattened Device Tree blob";
+                        data = /incbin/("arch/arm/boot/dts/aspeed/aspeed-ast2600-evb.dtb");
+                        type = "flat_dt";
+                        arch = "arm";
+                        compression = "none";
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+                ramdisk-1 {
+                        description = "obmc-phosphor-initramfs";
+                        data = /incbin/("/home/andrew/src/openbmc.org/openbmc/openbmc/origin/build/cc-nvme-mi/tmp/deploy/images/cc-nvme-mi/obmc-phosphor-initramfs-cc-nvme-mi.cpio.xz");
+                        type = "ramdisk";
+                        arch = "arm";
+                        os = "linux";
+                        compression = "none";
+                        
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+	};
+
+        configurations {
+                default = "conf-aspeed-ast2600-evb.dtb";
+                conf-aspeed-ast2600-evb.dtb {
+                        description = "1 Linux kernel, FDT blob, ramdisk";
+                        
+                        kernel = "kernel-1";
+                        fdt = "fdt-aspeed-ast2600-evb.dtb";
+                        ramdisk = "ramdisk-1";
+                        
+                        
+                        hash-1 {
+                                algo = "sha256";
+                        };
+                };
+	};
+};
