@@ -36,6 +36,7 @@
 [diff]
 	algorithm = histogram
 	colorMoved = true
+	renames = true
 [http]
 	cookiefile = /home/andrew/.gitcookies
 [init]
