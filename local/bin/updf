@@ -2,9 +2,4 @@
 
 set -eu
 
-SRC="$1"
-DST="$(mktemp)"
-
-pdftk "$SRC" input_pw PROMPT output "$DST"
-mv "$SRC" "$(basename "$SRC" .pdf)".enc.pdf
-mv "$DST" "$SRC"
+exec qpdf "$1" --replace-input --progress --linearize --decrypt --password-file=-
