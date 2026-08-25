@@ -59,6 +59,11 @@ fi
 if [ -f /usr/share/bash-completion/completions/git ]
 then
     source /usr/share/bash-completion/completions/git
+fi
+
+if [ -f /usr/lib/git-core/git-sh-prompt ]
+then
+    source /usr/lib/git-core/git-sh-prompt
 else
     alias __git_ps1=true
 fi
