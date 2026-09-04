@@ -4,4 +4,4 @@ set -eu
 
 set -x
 
-exec /home/andrew/src/qemu.org/qemu/origin/build/qemu-system-arm -M ast2600-evb -kernel arch/arm/boot/zImage -dtb arch/arm/boot/dts/aspeed/aspeed-ast2600-evb.dtb -initrd /home/andrew/Artefacts/buildroot.org/arm.busybox.cpio/output/images/rootfs.cpio -nographic
+exec /home/andrew/src/qemu.org/qemu/origin/build/qemu-system-arm -M ast2600-evb -kernel arch/arm/boot/zImage -dtb arch/arm/boot/dts/aspeed/aspeed-ast2600-evb.dtb -initrd /home/andrew/Artefacts/buildroot.org/arm.busybox.cpio/output/images/rootfs.cpio -nographic -chardev pty,id=usbredir -device usb-redir,chardev=usbredir
