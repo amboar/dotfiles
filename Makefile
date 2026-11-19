@@ -175,5 +175,5 @@ install-python: ${HOME}/.local/bin/python
 ${HOME}/.local/bin/python: $(shell command -v python3)
 	ln -s $< $@
 
-${HOME}/.local/bin/clang ${HOME}/.local/bin/clang++ ${HOME}/.local/bin/clang-tidy: ${HOME}/.local/bin/clang-dispatch
+${HOME}/.local/bin/clang ${HOME}/.local/bin/clang++ ${HOME}/.local/bin/clang-tidy ${HOME}/.local/bin/clangd: ${HOME}/.local/bin/clang-dispatch
 	ln -s $< $@
