@@ -1,3 +1,11 @@
 #!/usr/bin/sh
 
-exec $(basename $0)-${CLANG_VERSION} "$@"
+: ${CLANG_DISPATCH_VALGRIND:=0}
+
+CLANG_DISPATCH="$(basename $0)"
+if [ "1" = "$CLANG_DISPATCH_VALGRIND" ]
+then
+  exec valgrind --trace-children=yes --log-file="/home/andrew/Documents/${CLANG_DISPATCH}-crash-%p.log" --error-exitcode=1 --error-limit=no ${CLANG_DISPATCH}-${CLANG_VERSION} "$@"
+else
+  exec ${CLANG_DISPATCH}-${CLANG_VERSION} "$@"
+fi
